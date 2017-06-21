@@ -2,31 +2,32 @@ package julieta;
 
 public class Cuenta {
 
-		private int numero;
-		private int saldo;
+		public long id;
+		public double saldo;
+		public String nombreCliente;
 		
 		
-		public Cuenta(int numero){
-			this.numero = numero;
+		public Cuenta(long id){
+			this.id = id;
 		}
 		
 		public long getNumero(){
-			return this.numero;
+			return this.id;
 		}
 		
-		public int getSaldo(){
+		public double verSaldo(){
 			return this.saldo;
 		}
 		
-		public void depositar(int monto){
+		public void depositar(double monto){
 			this.saldo = this.saldo + monto;
 		}
 		
-		public void exportar(int monto){
+		public void extraer(double monto){
 			this.saldo = this.saldo - monto;
 		}
 		
-		public String textoNumeroSaldo() {
-			return ("Cuenta numero: " + this.numero + "El saldo es: "+ this.saldo);
+		public String stringInformacionDeCuenta() {
+			return ("Cuenta numero: " + this.id + "El saldo es: "+ this.saldo);
 		}
 }
