@@ -1,4 +1,4 @@
-package dipi;
+ package dipi;
 
 public class Cuenta {
 	
