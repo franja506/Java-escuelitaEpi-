@@ -10,7 +10,7 @@ public class TestCuentaCenturionDenis {
 
 	@Test
 	public void testeaDepositar() {
-		Cuenta c1 = new Cuenta(1);
+		Cuenta c1 = new Cuenta(1, 0);
 		c1.depositar(11);
 		Assert.assertEquals(11, c1.getSaldo());
 		
@@ -18,7 +18,7 @@ public class TestCuentaCenturionDenis {
 	
 	@Test
 	public void testeaExtraer(){
-		Cuenta c2 = new Cuenta(1);
+		Cuenta c2 = new Cuenta(1, 0);
 		c2.depositar(10);
 		c2.extraer(6);
 		Assert.assertEquals(4, c2.getSaldo());
