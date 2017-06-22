@@ -1,8 +1,10 @@
-package GabrieleGreco;
+package gabrielegreco;
 
-import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import gabrielegreco.Cuenta;
+import gabrielegreco.CuentaCorriente;
 
 public class Cuentatest {
 
@@ -12,9 +14,10 @@ public class Cuentatest {
 			Cuenta cuenta=new Cuenta(i,"Greco Gabriele");
 			int deposito=100;
 			cuenta.deposito(deposito);
-			int monto=10;
+			int monto=150;
 			cuenta.extraccion(monto);
 			cuenta.verSaldo();
+			CuentaCorriente cuentacorriente=new CuentaCorriente(i,"Greco",1500);
 	}
 
 }
