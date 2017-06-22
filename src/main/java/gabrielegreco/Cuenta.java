@@ -13,10 +13,10 @@ public class Cuenta {
 			System.out.println("Mi nombre de Cliente es "+nombreCliente);
 			
 		}
-		public boolean deposito(long montoadepositar){
-				 System.out.println("Quiero depositar: "+montoadepositar);
-				 if(montoadepositar>0){
-					 saldo=saldo+montoadepositar;
+		public boolean depositar(long montoADepositar){
+				 System.out.println("Quiero depositar: "+montoADepositar);
+				 if(montoADepositar>0){
+					 saldo=saldo+montoADepositar;
 					 System.out.println("monto a depositar aceptado");
 					 return true;
 				 }
@@ -26,7 +26,7 @@ public class Cuenta {
 				 }
 			
 		}
-		public boolean extraccion(long montoasacar){
+		public boolean extraer(long montoasacar){
 			 System.out.println("voy a  extraer "+montoasacar);
 			 if(montoasacar<saldo&&montoasacar>0){
 				 saldo=saldo-montoasacar;
@@ -39,11 +39,11 @@ public class Cuenta {
 			 }
 				 			
 		}
-		public long verSaldo(){
-			
-			System.out.println("el saldo es "+saldo);
+		public long getSaldo(){
 			return saldo;
-
+		}
+		public String getNombreCliente(){
+			return nombreCliente;
 		}
 		
 }
