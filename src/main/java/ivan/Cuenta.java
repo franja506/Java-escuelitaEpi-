@@ -1,20 +1,21 @@
 package ivan;
 
 public class Cuenta implements dipi.ICuenta {
-	long saldo;
-	String nombreCliente;
-	long id;
+	public long saldo;
+	private String nombreCliente;
+	private long id;
 	
 	
 	public Cuenta(long nro, String cliente ){
 		this.saldo=0;
-		this.setId(nro);
+		this.id=nro;
 		this.setNombreCliente(cliente);
 		
 	}
 	public long getSaldo() {
 		return saldo;
 	}
+
 
 	public String getNombreCliente() {
 		return nombreCliente;
@@ -25,9 +26,7 @@ public class Cuenta implements dipi.ICuenta {
 	public long getId() {
 		return id;
 	}
-	public void setId(long id) {
-		this.id = id;
-	}
+
 	
 	public boolean extraer(long cant){
 		if(cant > 0 && cant < this.saldo  ){
