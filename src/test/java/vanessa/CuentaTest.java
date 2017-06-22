@@ -1,8 +1,10 @@
-package Vanessa;
+package vanessa;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import vanessa.Cuenta;
 
 public class CuentaTest {
 

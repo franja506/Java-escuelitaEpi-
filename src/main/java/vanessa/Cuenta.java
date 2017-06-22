@@ -1,4 +1,4 @@
-package Vanessa;
+package vanessa;
 
 public class Cuenta {
 	long id;
