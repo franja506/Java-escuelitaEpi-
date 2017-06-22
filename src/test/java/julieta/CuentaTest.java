@@ -6,11 +6,26 @@ import org.junit.Test;
 
 public class CuentaTest {
 
+	Cuenta nuevaCuenta = new Cuenta(111, "pepe");
+	
 	@Test
 	public void testDepositarEnCuenta() {
-		Cuenta nuevaCuenta = new Cuenta(111);   //id de la cuenta
-		nuevaCuenta.depositar(100);				//deposito en la cuenta 100
-		assertTrue(nuevaCuenta.verSaldo() == 100);
+		nuevaCuenta.depositar(100);				
+		assertEquals(100, nuevaCuenta.getSaldo());
+	}
+	
+	@Test
+	public void testExtraerDeCuenta(){
+		nuevaCuenta.depositar(100);	
+		nuevaCuenta.extraer(100);
+		assertEquals(0, nuevaCuenta.getSaldo());
+	}
+	
+	@Test
+	public void testDepositarEnCuentaMontoNegativo(){
+		boolean depositar = nuevaCuenta.depositar(-10);
+		assertFalse(depositar);
+		assertEquals(0, nuevaCuenta.getSaldo());
 	}
 	
 }
