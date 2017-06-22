@@ -8,9 +8,11 @@ public class CuentaTest {
 
 	@Test
 	public void testCuentaNueva() {
-		Cuenta cuenta = new Cuenta(10, "Brian");
-		cuenta.depositar(10);
-		assertNotNull(cuenta);
-		assertEquals(10, cuenta.getSaldo());	
+		CuentaCorriente cc = new CuentaCorriente(1, "Brian", 1000);
+		cc.depositar(2000);
+		assertEquals(false, cc.isGiroEnDescubiertoUtilizado());
+		assertEquals(true, cc.extraer(3000));
+		assertEquals(false, cc.extraer(3000));
+		assertEquals(true, cc.isGiroEnDescubiertoUtilizado());
 	}
 }
