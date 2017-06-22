@@ -1,27 +1,30 @@
 package GabrieleGreco;
 
 public class Cuenta {
-		int saldo;
-		int nrocuenta;
+		double saldo;
+		long id;
+		String nombreCliente;
 		
-		public Cuenta(int nrocuenta){
+		public Cuenta(long id,String nombreCliente){
 			
-			this.nrocuenta=nrocuenta;
-			System.out.println("Mi numero de cuenta es "+nrocuenta);
+			this.id=id;
+			this.nombreCliente=nombreCliente;
+			System.out.println("Mi numero de cuenta es "+id);
+			System.out.println("Mi nombre de Cliente es "+nombreCliente);
 			
 		}
-		  void deposito(int saldo){
+		  void deposito(double saldo){
 			
 			this.saldo=saldo;
 			System.out.println("Mi saldo es "+saldo);
 			
 		}
-		 void extraccion(int monto){
+		 void extraccion(double monto){
 			 System.out.println("voya  extraer "+monto);
 			saldo=saldo-monto;
 			
 		}
-		void ver_saldo(){
+		void verSaldo(){
 			
 			System.out.println("el saldo es "+saldo);
 
