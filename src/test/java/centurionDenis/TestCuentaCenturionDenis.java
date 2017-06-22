@@ -1,9 +1,10 @@
-package CenturionDenis;
+package centurionDenis;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import centurionDenis.Cuenta;
 import junit.framework.Assert;
 
 public class TestCuentaCenturionDenis {
@@ -14,6 +15,7 @@ public class TestCuentaCenturionDenis {
 		c1.depositar(11);
 		Assert.assertEquals(11, c1.getSaldo());
 		
+		
 	}
 	
 	@Test
@@ -22,6 +24,14 @@ public class TestCuentaCenturionDenis {
 		c2.depositar(10);
 		c2.extraer(6);
 		Assert.assertEquals(4, c2.getSaldo());
+	}
+	
+	@Test
+	public void testeaNombreCliente(){
+		Cuenta c2 = new Cuenta(1, 0);
+		c2.setNombreCliente("Denis");
+		Assert.assertEquals("Denis", c2.getNombreCliente());
+		
 	}
 
 }

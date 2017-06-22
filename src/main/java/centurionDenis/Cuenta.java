@@ -1,4 +1,4 @@
-package CenturionDenis;
+package centurionDenis;
 
 public class Cuenta {
 	
