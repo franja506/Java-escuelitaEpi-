@@ -1,34 +1,58 @@
 package brian;
 
-public class Cuenta {
-	protected long id;
-	protected long saldo;
-	protected String nombreUsuario;
+import dipi.ICuenta;
 
-	public long getId() {
-		return id;
-	}
+public class Cuenta implements ICuenta {
+	long id;
+	private long saldo;
+	private String nombreCliente;
 
-	public void setId(long id) {
+	public Cuenta(long id, String nombreCliente)
+	{
 		this.id = id;
-	}
-
-	public Cuenta(long id, String nombreUsuario) {
-		this.id = id;
-		this.nombreUsuario = nombreUsuario;
-		this.saldo = 0;
-	}
-
-	public void retirar(long cantidad) {
-		this.saldo -= (this.saldo >= cantidad) ? cantidad : 0;
-	}
-
-	public void depositar(long cantidad) {
-		this.saldo += cantidad;
+		this.setNombreCliente(nombreCliente);
+		this.setSaldo(0);
 	}
 	
-	public long getSaldo()
-	{
+	public void setNombreCliente(String nombreCliente) {
+		this.nombreCliente = nombreCliente;
+	}
+
+	public long getSaldo() {
 		return this.saldo;
+	}
+
+	@Override
+	public String getNombreCliente() {
+		return this.nombreCliente;
+	}
+
+	@Override
+	public boolean depositar(long montoADepositar) {
+		if (montoADepositar > 0 && montoADepositar > this.getSaldo()) {
+			this.setSaldo(this.getSaldo() + montoADepositar);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean extraer(long montoAExtraer) {
+		if (montoAExtraer > 0 && montoAExtraer <= this.getSaldo()) {
+			this.setSaldo(this.getSaldo() - montoAExtraer);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void setSaldo(long saldo) {
+		this.saldo = saldo;
+	}
+
+	@Override
+	public long getId() {
+		return this.id;
 	}
 }
