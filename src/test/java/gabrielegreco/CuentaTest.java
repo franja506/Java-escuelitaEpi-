@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class Cuentatest {
+public class CuentaTest {
 
 	@Test
 	public void testMontoNegativo() {
@@ -17,7 +17,7 @@ public class Cuentatest {
 		Cuenta cuenta = new Cuenta(1234, "Greco Gabriele");
 		assertTrue("Monto depositado",cuenta.depositar(1500));
 		assertEquals(1500, cuenta.getSaldo());
-	
-		
 	}
+	
+	
 }
