@@ -2,17 +2,29 @@ package christian;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import christianVaras.Cuenta;
+import christian.Cuenta;
 
 public class CuentaTest {
+	Cuenta cuenta;
 	String nombreCliente = "Juan Perez";
-	Cuenta cuenta = new Cuenta(125, nombreCliente);
+	long idCuenta = 125;
+	
+	public Cuenta buildCuenta() {
+		return new Cuenta(idCuenta, nombreCliente);
+	}
+	
+	@Before
+	public void setup() {
+		cuenta = this.buildCuenta();
+	}
 	
 	@Test
-	public void laCuentaTieneNumero125() {
-		assertEquals(125,cuenta.getIdCuenta());
+	public void laCuentaTieneId125() {
+		
+		assertEquals(125,cuenta.getId());
 	}
 	
 	@Test
@@ -21,23 +33,40 @@ public class CuentaTest {
 	}
 	
 	@Test
-	public void agrego50PesosyTengo50DeSaldo() {
+	public void deposito50yTengo50DeSaldoActual() {
 		long valorAgregar = 50;
-		cuenta.agregarSaldo(valorAgregar);
+		cuenta.depositar(valorAgregar);
 		assertEquals(valorAgregar,cuenta.getSaldo());
 	}
 	
 	@Test
-	public void saco10YMeDevuelve10() {
-		long saldoExtraer = 10; 
-		long saldoExtraido = cuenta.extraerSaldo(saldoExtraer);
-		
-		assertEquals(saldoExtraer,saldoExtraido);
+	public void consultoSaldoInicialCero() {
+		assertEquals(0,cuenta.getSaldo());
 	}
 	
-	public void tengo40DeSaldo() {
-		assertEquals(40,cuenta.getSaldo());
+	@Test
+	public void deposito50yExtrae20Correctamente() {
+		Cuenta cuenta = this.buildCuenta();
+		cuenta.depositar(50);
+		assertTrue(cuenta.extraer(20));
 	}
 	
+	
+	/* Fail Test */
+	
+	@Test
+	public void extraigoUnMontoMayorAlSaldoInicial() {
+		assertFalse(cuenta.extraer(20));
+	}
+	
+	@Test
+	public void extraigoUnMontoNegativo() {
+		assertFalse(cuenta.extraer(-99));
+	}
+	
+	@Test
+	public void depositoUnMontoNegativo() {
+		assertFalse(cuenta.depositar(-192));
+	}
 
 }
