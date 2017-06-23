@@ -1,33 +1,56 @@
 package julieta;
 
-public class Cuenta {
+import dipi.ICuenta;
+
+public class Cuenta implements ICuenta{
 
 		public long id;
-		public double saldo;
+		public long saldo;
 		public String nombreCliente;
 		
 		
-		public Cuenta(long id){
+		public Cuenta(long id, String nombreCliente){
 			this.id = id;
+			this.nombreCliente = nombreCliente;
 		}
-		
-		public long getNumero(){
+
+		@Override
+		public long getId() {
 			return this.id;
 		}
-		
-		public double verSaldo(){
+
+		@Override
+		public String getNombreCliente() {
+			return this.getNombreCliente();
+		}
+
+		@Override
+		public boolean depositar(long montoADepositar) {
+			if (montoADepositar > 0){
+				this.saldo = this.saldo + montoADepositar;
+				return true;
+			}
+			else {
+			System.out.println("No se pueden depositar montos negativos");
+			return false;
+			}
+		}
+
+		@Override
+		public boolean extraer(long montoAExtraer) {			
+			long saldoRestante = this.saldo - montoAExtraer;
+			if (saldoRestante >= 0){
+				this.saldo = this.saldo - montoAExtraer;
+				return true;
+			}
+			else{
+				System.out.println("Saldo insuficiente. Su saldo actual: " + this.getSaldo());
+				return false;
+			}
+		}
+
+		@Override
+		public long getSaldo() {
 			return this.saldo;
-		}
-		
-		public void depositar(double monto){
-			this.saldo = this.saldo + monto;
-		}
-		
-		public void extraer(double monto){
-			this.saldo = this.saldo - monto;
-		}
-		
-		public String stringInformacionDeCuenta() {
-			return ("Cuenta numero: " + this.id + "El saldo es: "+ this.saldo);
 		}
 }
