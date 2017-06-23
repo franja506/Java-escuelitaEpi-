@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class CuentaCorrienteTest {
 	
-	CuentaCorriente nuevaCuenta = new CuentaCorriente(222,"pepe", 8000);
+	CuentaCorriente nuevaCuenta = new CuentaCorriente(222,"pepe", "Banco Galicia", 8000);
 
 	@Test
 	public void testDepositarEnCuentaCorriente() {
