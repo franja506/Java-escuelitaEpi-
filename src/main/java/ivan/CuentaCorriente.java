@@ -29,7 +29,7 @@ public class CuentaCorriente extends Cuenta  implements dipi.ICuentaCorriente{
 		else{
 			if (this.getSaldo() + this.getGiroDescubierto() >= cant){
 				this.saldo = (this.saldo - cant);
-				System.out.println("se realizo la extreaccion con exito");
+				System.out.println("se realizo la extraccion con exito");
 				return true;
 			}
 			else{
