@@ -3,7 +3,6 @@ package brian;
 import dipi.ICuentaCorriente;
 
 public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
-
 	private long giroEnDescubierto;
 	private boolean giroEnDescubiertoUtilizado;
 

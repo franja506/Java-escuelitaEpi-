@@ -7,13 +7,12 @@ public class Cuenta implements ICuenta {
 	private long saldo;
 	private String nombreCliente;
 
-	public Cuenta(long id, String nombreCliente)
-	{
+	public Cuenta(long id, String nombreCliente) {
 		this.id = id;
 		this.setNombreCliente(nombreCliente);
 		this.setSaldo(0);
 	}
-	
+
 	public void setNombreCliente(String nombreCliente) {
 		this.nombreCliente = nombreCliente;
 	}
