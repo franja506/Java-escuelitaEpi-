@@ -1,5 +1,7 @@
 package carlos;
 
+import java.util.Random;
+
 import org.junit.Test;
 
 import carlos.Cuenta;
@@ -21,5 +23,4 @@ public class CuentaTest {
 		cuenta.depositar(1000);
 		System.out.println(cuentacorriente.getSaldo());
 	}
-
 }

@@ -11,8 +11,8 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 
 	public CuentaCorriente(long id, String nombreCliente, long montoGiroDescubierto) {
 		super(id, nombreCliente);
-		this.montoGiroDescubierto = montoGiroDescubierto;
-		saldoMontoGiroDescubierto = montoGiroDescubierto;
+		this.montoGiroDescubierto = this.saldoMontoGiroDescubierto = montoGiroDescubierto;
+		this.saldoMontoGiroDescubierto = montoGiroDescubierto;
 	}
 
 	public long giroEnDescubiertoHabilidado() {
@@ -47,7 +47,7 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 			return super.extraer(extraer);
 		} else{
 			if(saldo!=0){
-				extraer = extraer - saldo;
+				extraer -= saldo;
 				super.extraer(saldo);
 			}
 			
@@ -55,7 +55,7 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 				System.err.println("No tenes saldo suficiente.");
 				return false;
 			}
-			saldoMontoGiroDescubierto=saldoMontoGiroDescubierto-extraer;
+			saldoMontoGiroDescubierto -= extraer;
 			return true;
 		}
 	}
