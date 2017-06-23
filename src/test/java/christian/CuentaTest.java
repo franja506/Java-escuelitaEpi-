@@ -1,8 +1,10 @@
-package christianVaras;
+package christian;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import christianVaras.Cuenta;
 
 public class CuentaTest {
 	String nombreCliente = "Juan Perez";

@@ -1,4 +1,4 @@
-package christianvaras;
+package christian;
 
 import static org.junit.Assert.*;
 
