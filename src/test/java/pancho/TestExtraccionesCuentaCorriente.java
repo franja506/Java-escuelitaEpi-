@@ -33,7 +33,14 @@ public class TestExtraccionesCuentaCorriente {
 		assertEquals(12000, cuenta.getSaldo());
 	}
 	
-	
+	@Test 
+	public void giroEnDescubiertoYLuegoDeposito() {
+		CuentaCorriente cuenta = new CuentaCorriente(123459,0,"Armando Paredes",100);
+		assertTrue(cuenta.extraer(50));
+		assertEquals(-50, cuenta.getSaldo());
+		
+	}
+
 	
 
 }
