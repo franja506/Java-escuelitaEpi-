@@ -30,7 +30,7 @@ public class Cuenta implements dipi.ICuenta {
 	
 	public boolean extraer(long cant){
 		if(cant > 0 && cant < this.saldo  ){
-			this.saldo = this.saldo - cant;
+			this.saldo = (this.saldo - cant);
 			System.out.println("se realizo la extraccion con exito");
 			return true;
 		}else{
@@ -48,7 +48,7 @@ public class Cuenta implements dipi.ICuenta {
 	
 	public boolean depositar(long cant){
 		if (cant > 0){
-			this.saldo =this.saldo + cant;
+			this.saldo = (this.saldo + cant);
 			System.out.println("se deposito con exito. su saldo es :"+ this.getSaldo());
 			return true;
 		}else{

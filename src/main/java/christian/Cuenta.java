@@ -6,6 +6,7 @@ public class Cuenta implements ICuenta {
 	private long saldo=0;
 	private long id;
 	private String nombreCliente;
+	TipoDeCuenta tipo = TipoDeCuenta.COMUN;
 	
 	public Cuenta(long id, String nombreCliente) {
 		this.id = id;

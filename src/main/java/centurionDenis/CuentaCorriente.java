@@ -1,6 +1,6 @@
 package centurionDenis;
 
-public class CuentaCorriente extends Cuenta{
+public class CuentaCorriente extends Cuenta /*implements dipi.ICuentaCorriente*/{
 	
 	private long giroEnDescubierto;
 	private final int MAX_GIRO_DESCUBIERTO = -100;
@@ -65,8 +65,13 @@ public class CuentaCorriente extends Cuenta{
 
 	@Override
 	public String toString() {
-		return "CuentaCorriente [giroEnDescubierto=" + giroEnDescubierto + ", MAX_GIRO_DESCUBIERTO="
+		return super.toString() + "CuentaCorriente [giroEnDescubierto=" + giroEnDescubierto + ", MAX_GIRO_DESCUBIERTO="
 				+ MAX_GIRO_DESCUBIERTO + "]";
+	}
+
+	public long giroEnDescubiertoHabilidado() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

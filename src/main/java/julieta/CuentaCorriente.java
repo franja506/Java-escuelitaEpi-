@@ -8,8 +8,8 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 	public long deudaAPagar;
 	public int flag;
 
-	public CuentaCorriente(long id, String nombreCliente, long saldoEnDescubierto) {
-		super(id, nombreCliente);
+	public CuentaCorriente(long id, String nombreCliente, String nombreBanco, long saldoEnDescubierto) {
+		super(id, nombreCliente, nombreBanco);
 		this.saldoEnDescubierto = saldoEnDescubierto;
 	}
 

@@ -13,7 +13,7 @@ public class CuentaCorriente extends Cuenta  implements dipi.ICuentaCorriente{
 	
 	public  CuentaCorriente (long nroCuenta, String cliente, long giro ){
 		super(nroCuenta, cliente);		 
-		this.setGiroDescubierto(1000);
+		this.setGiroDescubierto(giro);
 		
 	}
 	public long giroEnDescubiertoHabilidado(){
@@ -22,30 +22,21 @@ public class CuentaCorriente extends Cuenta  implements dipi.ICuentaCorriente{
 	
 
 	public boolean extraer(long cant){ 
-		if(cant > 0 && cant < this.getSaldo()){
-			System.out.println("Extracccion realizada con exito.");
-			this.saldo =this.saldo - cant;
-			return true;
+		if (cant <= 0){
+			System.out.println("Error. no se puede extaer valor negativo");
+			return false;
 		}
 		else{
-			if (cant < 0){
-				System.out.println("Error. no se puede extaer valor negativo");
-				return false;
+			if (this.getSaldo() + this.getGiroDescubierto() >= cant){
+				this.saldo = (this.saldo - cant);
+				System.out.println("se realizo la extreaccion con exito");
+				return true;
 			}
 			else{
-				if (cant > (this.getSaldo() + this.getGiroDescubierto()) ){
-					System.out.println("Error. no se puede extaer mas del saldo y descubierto");
-					return false;
-				}else{
-					
-					this.saldo=(this.saldo + this.getGiroDescubierto()) - cant;
-					System.out.println("Extraccion con exito se retiro utilizando el descubierto");
-					return true;
-				}
-				
+				System.out.println("Error. no se puede extraer mas del saldo y monto descubierto");
+				return false;
 			}
 		}
-		
 	}
 
 }

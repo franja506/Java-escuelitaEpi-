@@ -29,7 +29,8 @@ public class Cuenta implements dipi.ICuenta {
 	}
 	
 	private void setNroCuenta(int nroCuenta){
-		this.nroCuenta = nroCuenta;
+		if(nroCuenta >= 0)
+			this.nroCuenta = nroCuenta;
 	}
 	
 	public int getNroCuenta(){
