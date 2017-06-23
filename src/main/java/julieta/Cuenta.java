@@ -7,11 +7,13 @@ public class Cuenta implements ICuenta {
 		public long id;
 		public long saldo;
 		public String nombreCliente;
+		public String nombreBanco;
 		
 		
-		public Cuenta(long id, String nombreCliente){
+		public Cuenta(long id, String nombreCliente, String nombreBanco){
 			this.id = id;
 			this.nombreCliente = nombreCliente;
+			this.nombreBanco = nombreBanco;
 		}
 
 		@Override
