@@ -1,23 +1,23 @@
 package gabrielegreco;
 
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import gabrielegreco.Cuenta;
-import gabrielegreco.CuentaCorriente;
-
 public class Cuentatest {
 
+	Cuenta cuenta = new Cuenta(1234, "Greco Gabriele");
+	boolean valor;
 	@Test
-	public void test() {
-			int i=1234;
-			Cuenta cuenta=new Cuenta(i,"Greco Gabriele");
-			int deposito=100;
-			cuenta.deposito(deposito);
-			int monto=150;
-			cuenta.extraccion(monto);
-			cuenta.verSaldo();
-			CuentaCorriente cuentacorriente=new CuentaCorriente(i,"Greco",1500);
-	}
+	public void testMontoNegativo() {
+		valor = cuenta.depositar(-100);
+		assertFalse("Monto no depositado", valor);
 
+	}
+	@Test
+	public void testMontoAceptado() {
+		valor = cuenta.depositar(-100);
+		assertFalse("Monto depositado", valor);
+		
+	}
 }

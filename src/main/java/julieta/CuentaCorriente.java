@@ -36,11 +36,6 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 	}
 	
 	@Override
-	public long getSaldo() {							
-		return this.saldo;
-	}
-	
-	@Override
 	public long giroEnDescubiertoHabilidado() {
 		long saldoNuevo = this.saldo + this.saldoEnDescubierto;
 		return saldoNuevo;
