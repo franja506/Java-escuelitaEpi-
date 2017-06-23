@@ -26,5 +26,4 @@ public class TestExtraccionesCuenta {
 		assertEquals(false, cuenta.extraer(0));
 		assertEquals(120,cuenta.getSaldo());
 	}
-
 }
