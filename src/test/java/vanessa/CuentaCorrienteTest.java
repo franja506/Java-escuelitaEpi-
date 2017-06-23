@@ -9,6 +9,7 @@ public class CuentaCorrienteTest {
 	/*Cuentas Corrientes*/
 	@Test
 	public void testDepositosCuentaCorriente() {
+		 
 		CuentaCorriente c = new CuentaCorriente(1, "Vanessa Balleste", 100);
 		boolean depositar = c.depositar(50);
 		assertTrue(depositar);

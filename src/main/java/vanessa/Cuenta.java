@@ -1,15 +1,23 @@
 package vanessa;
+
 import dipi.ICuenta;
+import vanessa.Cliente;
 
 public class Cuenta implements ICuenta {
 	long id;
 	long saldo;
 	String nombreCliente;
+	Cliente cliente;
 	
-	public Cuenta(long id, String nombreCliente){
+	public Cuenta(long id, Cliente cliente){
 		this.id = id;
 		this.saldo = 0;
-		this.nombreCliente = nombreCliente;
+		this.cliente = cliente;
+	};
+	public Cuenta(long id, String cliente){
+		this.id = id;
+		this.saldo = 0;
+		this.nombreCliente = cliente;
 	};
 	
 

@@ -6,9 +6,9 @@ import vanessa.Cuenta;
 public class CuentaCorriente extends Cuenta implements ICuentaCorriente{
 	long montoGiroDescubierto;
 
-	public CuentaCorriente(long id, String nombreCliente, long montoGiroDescubierto){
+	public CuentaCorriente(long id, String cliente, long montoGiroDescubierto){
 		
-		super(id, nombreCliente);
+		super(id, cliente);
 		this.montoGiroDescubierto = montoGiroDescubierto;
 	}
 	
