@@ -2,8 +2,10 @@ package dipi;
 
 import static org.junit.Assert.*;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class CuentaTest {
 
 	@Test
@@ -17,7 +19,5 @@ public class CuentaTest {
 		System.out.println(cuenta.toString());
 		
 		assertEquals(cuenta.toString(), ca.toString());
-		
 	}
-
 }

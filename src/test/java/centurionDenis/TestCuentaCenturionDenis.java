@@ -35,7 +35,7 @@ public class TestCuentaCenturionDenis {
 	public void testeaExtraer(){
 		Cuenta c = new Cuenta(1, 0, "Dennis");
 		boolean bandera = c.extraer(100);
-		Assert.assertTrue(bandera);
+		Assert.assertFalse(bandera);
 	}
 	
 	@Test

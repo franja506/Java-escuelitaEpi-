@@ -2,62 +2,71 @@ package centurionDenis;
 
 public class CuentaCorriente extends Cuenta{
 	
-	private int nroCuenta;
-	private long saldo;
 	private long giroEnDescubierto;
-	String nombreCliente;
+	private final int MAX_GIRO_DESCUBIERTO = -100;
 	
 	public CuentaCorriente(int nroCuenta, int saldo, String nombreCliente, long 
 			giroEnDescubierto){
 		super(nroCuenta, saldo, nombreCliente);
-		this.setGiroEnDescubierto(giroEnDescubierto);
 	}
 	
 	public CuentaCorriente(int nroCuenta, int saldo, String nombreCliente){
 		super(nroCuenta, saldo, nombreCliente);
 	}
-
-	public int getNroCuenta() {
-		return nroCuenta;
+	
+	public CuentaCorriente(int nroCuenta){
+		super(nroCuenta);
 	}
 
-	private void setNroCuenta(int nroCuenta) {
-		this.nroCuenta = nroCuenta;
+	public int getNroCuenta() {
+		return super.getNroCuenta();
+	}
+	
+	public boolean extraer(int monto){
+		
+		if(monto > 0){
+			if(monto >= this.getSaldo()){
+				this.giroEnDescubierto(monto);
+			}
+			else{
+				super.setSaldo(super.getSaldo() - monto);
+			}
+			return true;
+		}	
+		return false;
+		
 	}
 
 	public long getSaldo() {
-		return saldo;
+		return super.getSaldo();
 	}
 
 	public void setSaldo(long saldo) {
 		super.setSaldo(saldo);
 	}
 
-	public long getGiroEnDescubierto() {
+	private boolean giroEnDescubierto(long montoAExtraer) {
 		
-		/**/
-		return giroEnDescubierto;
-	}
+		if(MAX_GIRO_DESCUBIERTO <= (this.getSaldo() - montoAExtraer)){
+			this.setSaldo(this.getSaldo() - montoAExtraer);
+			return true;
+		}
 
-	public void setGiroEnDescubierto(long giroEnDescubierto) {
-		this.giroEnDescubierto = giroEnDescubierto;
+		return false;
 	}
 
 	public String getNombreCliente() {
-		return nombreCliente;
+		return super.getNombreCliente();
 	}
 
 	public void setNombreCliente(String nombreCliente) {
-		this.nombreCliente = nombreCliente;
-	}
-
-	public CuentaCorriente(int nroCuenta){
-		super(nroCuenta);
+		super.setNombreCliente(nombreCliente);
 	}
 
 	@Override
 	public String toString() {
-		return "CuentaCorriente [nroCuenta=" + nroCuenta + ", saldo=" + saldo + ", giroEnDescubierto="
-				+ giroEnDescubierto + ", nombreCliente=" + nombreCliente + "]";
+		return "CuentaCorriente [giroEnDescubierto=" + giroEnDescubierto + ", MAX_GIRO_DESCUBIERTO="
+				+ MAX_GIRO_DESCUBIERTO + "]";
 	}
+
 }

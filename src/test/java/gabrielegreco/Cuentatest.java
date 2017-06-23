@@ -6,18 +6,18 @@ import org.junit.Test;
 
 public class Cuentatest {
 
-	Cuenta cuenta = new Cuenta(1234, "Greco Gabriele");
-	boolean valor;
 	@Test
 	public void testMontoNegativo() {
-		valor = cuenta.depositar(-100);
-		assertFalse("Monto no depositado", valor);
-
+		Cuenta cuenta = new Cuenta(1234, "Greco Gabriele");
+		assertFalse("Monto no depositado",cuenta.depositar(-100));
+		assertEquals(0, cuenta.getSaldo());
 	}
 	@Test
 	public void testMontoAceptado() {
-		valor = cuenta.depositar(-100);
-		assertFalse("Monto depositado", valor);
+		Cuenta cuenta = new Cuenta(1234, "Greco Gabriele");
+		assertTrue("Monto depositado",cuenta.depositar(1500));
+		assertEquals(1500, cuenta.getSaldo());
+	
 		
 	}
 }
