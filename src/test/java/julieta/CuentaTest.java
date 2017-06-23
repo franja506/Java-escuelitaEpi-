@@ -28,5 +28,11 @@ public class CuentaTest {
 		assertEquals(0, nuevaCuenta.getSaldo());
 	}
 	
+	@Test
+	public void testExtraerEnCuentaMontoNegativo(){
+		boolean extraer = nuevaCuenta.extraer(-10);
+		assertFalse(extraer);
+		assertEquals(0, nuevaCuenta.getSaldo());
+	}
 }
 
