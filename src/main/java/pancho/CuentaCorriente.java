@@ -31,5 +31,4 @@ public class CuentaCorriente extends Cuenta implements dipi.ICuentaCorriente{
 	public long giroEnDescubiertoHabilidado() {
 		return montoDeGiroEnDescubierto;
 	}
-	
 }

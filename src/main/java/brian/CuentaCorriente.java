@@ -3,7 +3,6 @@ package brian;
 import dipi.ICuentaCorriente;
 
 public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
-
 	private long giroEnDescubierto;
 	private boolean giroEnDescubiertoUtilizado;
 
@@ -20,7 +19,6 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 		this.setGiroEnDescubierto(giroEnDescubierto);
 	}
 
-	@Override
 	public long giroEnDescubiertoHabilidado() {
 		if (this.giroEnDescubiertoUtilizado) {
 			return 0;
@@ -32,7 +30,6 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 		this.giroEnDescubierto = giroEnDescubierto;
 	}
 
-	@Override
 	public boolean extraer(long montoAExtraer) {
 		if ((montoAExtraer > this.getSaldo())
 				&& (montoAExtraer <= this.getSaldo() + this.giroEnDescubiertoHabilidado())) {

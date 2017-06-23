@@ -8,6 +8,7 @@ import vanessa.Cuenta;
 
 public class CuentaTest {
 
+	/*Cuentas */
 	@Test
 	public void testDepositosCuenta() {
 		Cuenta c = new Cuenta(1, "Vanessa Balleste");
@@ -27,7 +28,10 @@ public class CuentaTest {
 		boolean extraer = c.extraer(60);
 		assertFalse(extraer);
 		assertEquals(50, c.getSaldo());
-	}
 		
+		assertFalse(c.extraer(-50));
+		assertEquals(50, c.getSaldo());
+	}
+			
 	
 }

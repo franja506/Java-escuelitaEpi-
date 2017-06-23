@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class CuentaTest {
 
-	Cuenta nuevaCuenta = new Cuenta(111, "pepe");
+	Cuenta nuevaCuenta = new Cuenta(111, "Pepe", "Banco Galicia");
 	
 	@Test
 	public void testDepositarEnCuenta() {
@@ -28,5 +28,11 @@ public class CuentaTest {
 		assertEquals(0, nuevaCuenta.getSaldo());
 	}
 	
+	@Test
+	public void testExtraerEnCuentaMontoNegativo(){
+		boolean extraer = nuevaCuenta.extraer(-10);
+		assertFalse(extraer);
+		assertEquals(0, nuevaCuenta.getSaldo());
+	}
 }
 

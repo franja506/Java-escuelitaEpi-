@@ -2,16 +2,18 @@ package julieta;
 
 import dipi.ICuenta;
 
-public class Cuenta implements ICuenta{
+public class Cuenta implements ICuenta {
 
 		public long id;
 		public long saldo;
 		public String nombreCliente;
+		public String nombreBanco;
 		
 		
-		public Cuenta(long id, String nombreCliente){
+		public Cuenta(long id, String nombreCliente, String nombreBanco){
 			this.id = id;
 			this.nombreCliente = nombreCliente;
+			this.nombreBanco = nombreBanco;
 		}
 
 		@Override
@@ -37,17 +39,21 @@ public class Cuenta implements ICuenta{
 		}
 
 		@Override
-		public boolean extraer(long montoAExtraer) {			
-			long saldoRestante = this.saldo - montoAExtraer;
-			if (saldoRestante >= 0){
-				this.saldo = this.saldo - montoAExtraer;
-				return true;
-			}
-			else{
-				System.out.println("Saldo insuficiente. Su saldo actual: " + this.getSaldo());
+		public boolean extraer(long montoAExtraer) {
+			if(montoAExtraer > 0){
+				long saldoRestante = this.saldo - montoAExtraer;
+				if (saldoRestante >= 0){
+					this.saldo = this.saldo - montoAExtraer;
+					return true;
+				}else{
+					System.out.println("Saldo insuficiente. Su saldo actual: " + this.getSaldo());
+					return false;
+				}
+			}else{
+				System.out.println("No se pueden extraer montos negativos");
 				return false;
 			}
-		}
+			}
 
 		@Override
 		public long getSaldo() {

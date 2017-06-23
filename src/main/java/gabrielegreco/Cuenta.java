@@ -3,21 +3,19 @@ package gabrielegreco;
 import dipi.ICuenta;
 
 public class Cuenta implements ICuenta {
-	private long saldo;
-	private long id;
-	private String nombreCliente;
+	public long saldo;
+	public long id;
+	public String nombreCliente;
 
 	public Cuenta(long id, String nombreCliente) {
 
 		this.id = id;
 		this.nombreCliente = nombreCliente;
-		System.out.println("Mi numero de cuenta es " + id);
-		System.out.println("Mi nombre de Cliente es " + nombreCliente);
+		saldo = 0;
 
 	}
 
 	public boolean depositar(long montoADepositar) {
-		System.out.println("Quiero depositar: " + montoADepositar);
 		if (montoADepositar > 0) {
 			saldo = saldo + montoADepositar;
 			return true;
@@ -28,13 +26,10 @@ public class Cuenta implements ICuenta {
 	}
 
 	public boolean extraer(long montoasacar) {
-		System.out.println("voy a  extraer " + montoasacar);
 		if (montoasacar < saldo && montoasacar > 0) {
 			saldo = saldo - montoasacar;
-			System.out.println("monto a sacar aceptado");
 			return true;
 		} else {
-			System.out.println("monto a sacar denegado");
 			return false;
 		}
 
