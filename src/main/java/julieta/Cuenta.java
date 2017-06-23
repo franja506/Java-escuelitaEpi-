@@ -2,7 +2,7 @@ package julieta;
 
 import dipi.ICuenta;
 
-public class Cuenta implements ICuenta{
+public class Cuenta implements ICuenta {
 
 		public long id;
 		public long saldo;

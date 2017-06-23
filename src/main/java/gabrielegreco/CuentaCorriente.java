@@ -3,9 +3,6 @@ package gabrielegreco;
 import dipi.ICuentaCorriente;
 
 public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
-	private	long saldo;
-	private	long id;
-	private String nombreCliente;
 	private int girodescubierto;
 	private int estadogirodescubierto;
 	
@@ -17,7 +14,7 @@ public CuentaCorriente(long id,String nombrecliente,int girodescubierto){
 	}
 public boolean extraer(long montoaextraer){
 		
-		 if((montoaextraer>0)&&((saldo-montoaextraer)>girodescubierto)){
+		 if((montoaextraer>0)&&((saldo-montoaextraer)>=girodescubierto)){
 			 if((saldo-montoaextraer)<0){
 				 if(estadogirodescubierto==1)
 					 return false;
