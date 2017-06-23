@@ -42,5 +42,9 @@ public class CuentaCorrienteTest {
 		// que devolver true
 		assertEquals(true, cc.isGiroEnDescubiertoUtilizado());
 		assertEquals(0, cc.getSaldo());
+		
+		cc.depositar(1000);
+		assertFalse(cc.isGiroEnDescubiertoUtilizado());
+		
 	}
 }
