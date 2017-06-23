@@ -21,12 +21,10 @@ public class Cuenta implements ICuenta {
 		return this.saldo;
 	}
 
-	@Override
 	public String getNombreCliente() {
 		return this.nombreCliente;
 	}
 
-	@Override
 	public boolean depositar(long montoADepositar) {
 		if (montoADepositar > 0 && montoADepositar > this.getSaldo()) {
 			this.setSaldo(this.getSaldo() + montoADepositar);
@@ -36,7 +34,6 @@ public class Cuenta implements ICuenta {
 		}
 	}
 
-	@Override
 	public boolean extraer(long montoAExtraer) {
 		if (montoAExtraer > 0 && montoAExtraer <= this.getSaldo()) {
 			this.setSaldo(this.getSaldo() - montoAExtraer);
@@ -50,7 +47,6 @@ public class Cuenta implements ICuenta {
 		this.saldo = saldo;
 	}
 
-	@Override
 	public long getId() {
 		return this.id;
 	}
