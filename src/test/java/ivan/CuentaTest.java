@@ -13,14 +13,11 @@ public class CuentaTest {
 	
 
 	@Test
-	public void ExtraerNegativotest() {
-		
+	public void ExtraerNegativotest() {	
 		cuenta.depositar(100);
 		cuenta.extraer(-10);
 		assertEquals(100, cuenta.getSaldo());
-	
-		
-		}
+	}
 	
 	@Test
 	public void extraerBien(){
@@ -37,8 +34,8 @@ public class CuentaTest {
 	
 	@Test
 	public void DepositarTest(){
-		c2.depositar(10);
-		assertEquals(10, c2.getSaldo());
+		c2.depositar(300);
+		assertEquals(300, c2.getSaldo());
 	}
 	
 	
