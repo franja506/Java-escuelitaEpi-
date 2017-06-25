@@ -1,16 +1,13 @@
 package gabrielegreco;
 
-import dipi.ICuenta;
+public class Cuenta {
 
-public class Cuenta implements ICuenta {
-	public long saldo;
-	public long id;
-	public String nombreCliente;
+	private long saldo;
+	private long id;
 
-	public Cuenta(long id, String nombreCliente) {
+	public Cuenta(long id) {
 
 		this.id = id;
-		this.nombreCliente = nombreCliente;
 		saldo = 0;
 
 	}
@@ -39,11 +36,16 @@ public class Cuenta implements ICuenta {
 		return saldo;
 	}
 
-	public String getNombreCliente() {
-		return nombreCliente;
-	}
-
 	public long getId() {
 		return id;
 	}
+
+	public void setSaldo(long saldo) {
+		this.saldo = saldo;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 }
