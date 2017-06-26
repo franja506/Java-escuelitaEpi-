@@ -38,4 +38,12 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 		}
 		return super.extraer(montoAExtraer);
 	}
+	
+	@Override
+	public boolean depositar(long montoADepositar) {
+		if (this.giroEnDescubiertoUtilizado) {
+			this.giroEnDescubiertoUtilizado = (this.getSaldo() + montoADepositar >= this.giroEnDescubierto) ? false : true;			
+		}
+		return super.depositar(montoADepositar);
+	}
 }
