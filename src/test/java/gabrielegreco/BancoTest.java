@@ -12,9 +12,9 @@ public class BancoTest {
 		santanderRio.agregarCliente("JUAN");
    		santanderRio.agregarCuenta("JUAN",2,-500);
 		assertTrue(santanderRio.depositar("JUAN", 2, 600));
-		assertEquals(600, santanderRio.verDatos("JUAN",2));
+		assertEquals(600, santanderRio.getSaldo("JUAN",2));
 		assertTrue(santanderRio.extraer("JUAN", 2, 500));
-		assertEquals(100, santanderRio.verDatos("JUAN",2));
+		assertEquals(100, santanderRio.getSaldo("JUAN",2));
 	}
 	@Test
 	public void testCreanCuentaConIdExistente() { 
@@ -38,7 +38,12 @@ public class BancoTest {
    		santanderRio.agregarCuenta("JUAN",2,-1000);
 		assertTrue(santanderRio.depositar("JUAN", 2, 600));
 		assertTrue(santanderRio.extraer("JUAN", 2, 900));
-		assertEquals(-300, santanderRio.verDatos("JUAN",2));
+		assertEquals(-300, santanderRio.getSaldo("JUAN",2));
+		;
+
+
+
+
 	}
 	@Test
 	public void crearDosCuentasConMismoNombre() { //Intento agregar dos clientes con mismo 

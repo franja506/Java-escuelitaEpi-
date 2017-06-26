@@ -1,6 +1,8 @@
 package gabrielegreco;
 
-public class Cuenta {
+import dipi.ICuenta;
+
+public class Cuenta implements ICuenta{
 
 	private long saldo;
 	private long id;
@@ -46,6 +48,11 @@ public class Cuenta {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getNombreCliente() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

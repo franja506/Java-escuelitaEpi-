@@ -126,7 +126,7 @@ public class Banco {
 		}
 		 
 	}
-	public long verDatos(String nombreCliente,long id){
+	public long getSaldo(String nombreCliente,long id){
 		int i=buscarNombreCliente(nombreCliente);
 		long dato;
 		if(i>=0){

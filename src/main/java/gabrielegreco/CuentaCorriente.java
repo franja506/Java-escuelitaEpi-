@@ -1,14 +1,14 @@
 package gabrielegreco;
 
+import dipi.ICuentaCorriente;
 
-public class CuentaCorriente extends Cuenta {
+public class CuentaCorriente extends Cuenta  implements ICuentaCorriente{
 	private int giroDescubierto;
 	private int estadoGiroDescubierto;
 
 	public CuentaCorriente(long id, int giroDescubierto) {
 		super(id);
 		this.giroDescubierto = giroDescubierto;
-		estadoGiroDescubierto = 0;
 
 	}
 
@@ -16,13 +16,7 @@ public class CuentaCorriente extends Cuenta {
 		
 		long saldo1=getSaldo();
 		if ((montoAExtraer > 0) && ((saldo1 - montoAExtraer) >= giroDescubierto)) {
-			if ((saldo1 - montoAExtraer) < 0) {
-				if (estadoGiroDescubierto == 1)
-					return false;
-				else {
-					estadoGiroDescubierto = 1;
-				}
-			}
+			
 			setSaldo(saldo1 - montoAExtraer);
 			System.out.println("monto a sacar aceptado");
 
