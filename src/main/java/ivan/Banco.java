@@ -47,15 +47,58 @@ public class Banco {
 		this.cuentasCorrientes = cuentasCorrientes;
 	}
 
-
+	public boolean existeCuenta(Cuenta cuenta){
+		for(Cuenta c : this.getCuentas()){
+			if (c.getId() == cuenta.getId()){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean existeCuentaCorriente(CuentaCorriente cuentaCorriente){
+		for (CuentaCorriente cc : this.getCuentasCorrientes()){
+			if (cc.getId() == cuentaCorriente.getId()){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean existeCliente(Cliente cliente){
+		for (Cliente cli: this.getClientes()){
+			if(cli.getId() == cliente.getId()){
+				return true;
+			}
+		}
+		return false;
+	}
 	public void agregarCliente(Cliente cliente){
-		this.getClientes().add(cliente);
+		if(! existeCliente(cliente)){
+			this.getClientes().add(cliente);
+		}
+		else{
+			System.out.println("Error el cliente ya existe.");
+		}
+		
 	}
 	
 	public void agregarCuenta(Cuenta cuenta){
-		this.getCuentas().add(cuenta);
+		if(! existeCuenta(cuenta)){
+			this.getCuentas().add(cuenta);
+		}
+		else{
+			System.out.println("Error. Cuenta existente");
+		}
+		
 	}
 	public void agregarCuentaCorriente(CuentaCorriente cuentaCorriente){
-		this.getCuentasCorrientes().add(cuentaCorriente);
+		if (! existeCuentaCorriente(cuentaCorriente)){
+			this.getCuentasCorrientes().add(cuentaCorriente);
+		}
+		else{
+			System.out.println("Error. Cuenta corriente existente");
+		}
+		
 	}
 }
