@@ -1,21 +1,29 @@
 package centurionDenis;
 
-public class CuentaCorriente extends Cuenta /*implements dipi.ICuentaCorriente*/{
+public class CuentaCorriente extends Cuenta implements dipi.ICuentaCorriente{
 	
 	private long giroEnDescubierto;
-	private final int MAX_GIRO_DESCUBIERTO = -100;
+	private final long GIRO_DESCUBIERTO;
+	private final long MIN_GIRO_DESCUBIERTO = 100;
 	
 	public CuentaCorriente(int nroCuenta, int saldo, String nombreCliente, long 
 			giroEnDescubierto){
 		super(nroCuenta, saldo, nombreCliente);
+		GIRO_DESCUBIERTO = giroEnDescubierto;
 	}
 	
 	public CuentaCorriente(int nroCuenta, int saldo, String nombreCliente){
 		super(nroCuenta, saldo, nombreCliente);
+		GIRO_DESCUBIERTO = MIN_GIRO_DESCUBIERTO;
 	}
 	
 	public CuentaCorriente(int nroCuenta){
 		super(nroCuenta);
+		GIRO_DESCUBIERTO = MIN_GIRO_DESCUBIERTO;
+	}
+	
+	public CuentaCorriente(){
+		GIRO_DESCUBIERTO = MIN_GIRO_DESCUBIERTO;
 	}
 
 	public int getNroCuenta() {
@@ -47,7 +55,7 @@ public class CuentaCorriente extends Cuenta /*implements dipi.ICuentaCorriente*/
 
 	private boolean giroEnDescubierto(long montoAExtraer) {
 		
-		if(MAX_GIRO_DESCUBIERTO <= (this.getSaldo() - montoAExtraer)){
+		if(GIRO_DESCUBIERTO <= (this.getSaldo() - montoAExtraer)){
 			this.setSaldo(this.getSaldo() - montoAExtraer);
 			return true;
 		}
@@ -66,7 +74,7 @@ public class CuentaCorriente extends Cuenta /*implements dipi.ICuentaCorriente*/
 	@Override
 	public String toString() {
 		return super.toString() + "CuentaCorriente [giroEnDescubierto=" + giroEnDescubierto + ", MAX_GIRO_DESCUBIERTO="
-				+ MAX_GIRO_DESCUBIERTO + "]";
+				+ GIRO_DESCUBIERTO + "]";
 	}
 
 	public long giroEnDescubiertoHabilidado() {

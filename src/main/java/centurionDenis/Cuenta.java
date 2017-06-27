@@ -19,6 +19,10 @@ public class Cuenta implements dipi.ICuenta {
 	public Cuenta(int nroCuenta){
 		this(nroCuenta, 0);
 	}
+	
+	public Cuenta(){
+		
+	}
 
 	public String getNombreCliente() {
 		return nombreCliente;
@@ -72,4 +76,28 @@ public class Cuenta implements dipi.ICuenta {
 	public String toString() {
 		return "Cuenta [nombreCliente=" + nombreCliente + ", nroCuenta=" + nroCuenta + ", saldo=" + saldo + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + nroCuenta;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cuenta other = (Cuenta) obj;
+		if (nroCuenta != other.nroCuenta)
+			return false;
+		return true;
+	}
+	
+	
 }
