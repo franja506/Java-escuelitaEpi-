@@ -1,16 +1,17 @@
 package brian;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Cliente {
-	private List<Cuenta> cuentas;
-	private List<CuentaCorriente> cc;
+import dipi.ICliente;
+import dipi.ICuenta;
+
+public class Cliente implements ICliente{
+	private Set<ICuenta> cuentas;
 	private String nombre;
 
 	public Cliente(String nombre) {
-		this.cuentas = new ArrayList<Cuenta>();
-		this.cc = new ArrayList<CuentaCorriente>();
+		this.cuentas = new HashSet<ICuenta>();
 		this.nombre = nombre;
 	}
 
@@ -22,19 +23,11 @@ public class Cliente {
 		this.nombre = nombre;
 	}
 
-	public List<Cuenta> getCuentas() {
+	public Set<ICuenta> getCuentas() {
 		return cuentas;
 	}
 
-	public void setCuentas(List<Cuenta> cuentas) {
+	public void setCuentas(Set<ICuenta> cuentas) {
 		this.cuentas = cuentas;
-	}
-
-	public List<CuentaCorriente> getCc() {
-		return cc;
-	}
-
-	public void setCc(List<CuentaCorriente> cc) {
-		this.cc = cc;
 	}
 }

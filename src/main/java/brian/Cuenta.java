@@ -1,9 +1,10 @@
 package brian;
 
+import dipi.ICliente;
 import dipi.ICuenta;
 
 public class Cuenta implements ICuenta {
-	long id;
+	private long id;
 	private long saldo;
 	private String nombreCliente;
 
@@ -49,5 +50,10 @@ public class Cuenta implements ICuenta {
 
 	public long getId() {
 		return this.id;
+	}
+
+	public ICliente getCliente() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
