@@ -6,53 +6,50 @@ import dipi.ICuenta;
 
 public class Cliente {
 	
+	private int cantidadCuenta;
+	private int cantidadCuentaCorriente;
 	private String tipoDeCuenta;
-	private ArrayList<Cuenta> cuentaDelCliente;
+	private ArrayList<Cuenta> cuentaDelCliente = new ArrayList<Cuenta>();
 	private String nombreDelCliente;
 	private int nroCliente;
 	
-	public Cliente(int nroCliente2, String nombre, String tipoCuenta, int nroCuenta,
+	public Cliente(int nroCliente, String nombre, String tipoCuenta, int nroCuenta, int saldo) {
+		setNroCliente(nroCliente);
+		setNombreDelCliente(nombre);
+		setTipoDeCuenta(tipoCuenta);
+		if(tipoCuenta.equals("CUENTA")){
+			cuentaDelCliente.add(new Cuenta(nroCuenta, saldo, nombre));
+			cantidadCuenta++;
+			if(cantidadCuenta < cantidadCuentaCorriente){
+				cuentaDelCliente.add(new CuentaCorriente(nroCuenta, saldo, nombre));
+			}
+			
+		}
+		else
+		{
+			cuentaDelCliente.add(new CuentaCorriente(nroCuenta, saldo, nombre));
+			cantidadCuentaCorriente++;
+		}
+	}
+
+	
+	public Cliente(int nroCliente, String nombre, String tipoCuenta, int nroCuenta,
 			int saldo, long giroDescubierto) {
-		setNroCliente(nroCliente2);
+		setNroCliente(nroCliente);
 		setNombreDelCliente(nombre);
 		setTipoDeCuenta(tipoCuenta);
 		if(tipoCuenta.equals("CUENTA")){
 			cuentaDelCliente.add(new Cuenta(nroCuenta));
-			while(cuentaDelCliente.iterator().hasNext()){
-				/*logica para determinar si tiene mas cuentas que cuentascorrientes*/
+			cantidadCuenta++;
+			if(cantidadCuenta < cantidadCuentaCorriente){
+				cuentaDelCliente.add(new CuentaCorriente(nroCuenta, saldo, nombre));
 			}
 			
 		}
 		else
 		{
 			cuentaDelCliente.add(new CuentaCorriente(nroCuenta, saldo, nombre,giroDescubierto));
-		}
-	}
-
-
-	public Cliente(int nroCliente, String nombreDelCliente, String tipoDeCuenta){
-		setNombreDelCliente(nombreDelCliente);
-		setNroCliente(nroCliente);
-		setTipoDeCuenta(tipoDeCuenta);
-	}
-	
-	public Cliente(int nroCliente){
-		setNroCliente(nroCliente);
-	}
-	public Cliente(int nroCliente2, String nombre, String tipoCuenta, int nroCuenta) {
-		setNroCliente(nroCliente2);
-		setNombreDelCliente(nombre);
-		setTipoDeCuenta(tipoCuenta);
-		if(tipoCuenta.equals("CUENTA")){
-			cuentaDelCliente.add(new Cuenta(nroCuenta));
-			while(cuentaDelCliente.iterator().hasNext()){
-				/*logica para determinar si tiene mas cuentas que cuentascorrientes*/
-			}
-			
-		}
-		else
-		{
-			cuentaDelCliente.add(new CuentaCorriente(nroCuenta));
+			cantidadCuentaCorriente++;
 		}
 	}
 
@@ -84,5 +81,16 @@ public class Cliente {
 			this.cuentaDelCliente.add(cuenta);
 		return true;
 	}
+
+	public int cantidadDeCuentasTotales(){
+		return cuentaDelCliente.size();
+	}
 	
+	public int cantidadDeCuentasCorrientes(){
+		return cantidadCuentaCorriente;
+	}
+	
+	public int cantidadDeCuentas(){
+		return cantidadCuenta;
+	}
 }

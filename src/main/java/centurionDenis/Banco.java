@@ -12,19 +12,21 @@ public class Banco {
 		clientes = new HashSet<Cliente>();
 	}
 	
-	public boolean agregarCliente(int nroCliente, String nombre, String tipoCuenta){
-		if(agregarCliente(new Cliente(nroCliente, nombre, tipoCuenta)))
+	public boolean agregarCliente(int nroCliente, String nombre, String tipoCuenta,
+			int nroCuenta, int saldo){
+		if(agregarCliente(new Cliente(nroCliente, nombre, tipoCuenta, nroCuenta, saldo)))
+			return true;
+		return false;
+	}
+	
+	public boolean agregarCliente(int nroCliente, String nombre,
+			String tipoCuenta, int nroCuenta, int saldo, long giro){
+		if(agregarCliente(new Cliente(nroCliente, nombre, tipoCuenta, nroCuenta, saldo, giro)))
 			return true;
 		return false;
 	}
 	
 
-	public boolean agregarCliente(int nroCliente){
-		if(agregarCliente(new Cliente(nroCliente)))
-			return true;
-		return false;
-	}
-	
 	public boolean agregarCliente(Cliente clienteAgregado){
 		if(clientes.add(clienteAgregado)){
 			return true;
