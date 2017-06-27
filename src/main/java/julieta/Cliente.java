@@ -1,62 +1,57 @@
 package julieta;
 
-import java.util.List;
-
+import java.util.HashSet;
+import java.util.Set;
 
 public class Cliente {
 
-	public String nombreCliente;
-	public List<Cuenta> cuentas;
-	public List<CuentaCorriente> cuentasCorrientes;
-	public int cantidadCuentasSaldo;
-	public int cantidadCuentasCorriente;
-	
-	public List<Cuenta> getCuentas()  {
-		return this.cuentas;
-	}
-	
-	public List<CuentaCorriente> getCuentasCorrientes()  {
-		return this.cuentasCorrientes;
-	}
-	
-	public Cliente(String nombre){
+	protected String nombreCliente;
+	protected Set<Cuenta> cuentas;
+
+	public Cliente(String nombre) {
 		this.nombreCliente = nombre;
-		this.cantidadCuentasSaldo = 0;
-		this.cantidadCuentasCorriente = 0;
-		
-	}
-	
-	public int getCantidadCuentasSaldo() {
-		return cantidadCuentasSaldo;
+		this.cuentas = new HashSet<Cuenta>();
 	}
 
-	public int getCantidadCuentasCorriente() {
-		return cantidadCuentasCorriente;
+	public Set<Cuenta> getCuentas() {
+		return this.cuentas;
 	}
-	
-	public void agregarCuenta(Cuenta cuenta) {
-		if (cuenta == null) {
-			System.out.println("La cuenta a agregar es nula");
-		} else if(sePuedeAgregarOtraCuenta()){
-			this.cuentas.add(cuenta);
-			} else {
-				System.out.println("No es posible tener mas cuentas que cuentas corrientes");
-			}
-		}
-	
-	public void agregarCuentaCorriente(CuentaCorriente cuentaCorriente) {
-		if (cuentaCorriente == null) {
-			System.out.println("La cuenta a agregar es nula");
+
+	public long getCantidadCuentasSaldo() {
+		return this.cuentas.stream().mapToLong(cuenta -> cuenta.getSaldo()).sum();
+	}
+
+	public Cuenta crearCuenta(long id) {
+		if (sePuedeAgregarCuenta()) {
+			Cuenta unaCuenta = new Cuenta(id, this);
+			this.cuentas.add(unaCuenta);
+			return unaCuenta;
 		} else {
-			this.cuentas.add(cuentaCorriente);
-			} 
+			throw new excepcionCantidadDeCuentasCorrientesMenorQueCuentas();
 		}
-	
-	public boolean sePuedeAgregarOtraCuenta(){
-		if(this.cuentas.size() > this.cuentasCorrientes.size()){
+	}
+
+	public CuentaCorriente crearCuentaCorriente(long id, long giroEnDescubierto) {
+		CuentaCorriente unaCuentaCorriente = new CuentaCorriente(id, this, giroEnDescubierto);
+		this.cuentas.add(unaCuentaCorriente);
+		return unaCuentaCorriente;
+	}
+
+	protected boolean sePuedeAgregarCuenta() {
+		long cuentas = this.cuentas.stream().filter(cuenta -> cuenta.esCorriente() == false).count();
+		long cuentasCorrientes = this.cuentas.stream().filter(cuenta -> cuenta.esCorriente()).count();
+		if (cuentasCorrientes > (cuentas + 1)) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
+	}
+	
+	public boolean depositarEnCuenta(long id, long monto){
+		return  this.cuentas.stream().filter(cuenta -> (cuenta.getId() == id)).findFirst().get().depositar(monto);
+	}
+	
+	public boolean extraerDeCuenta(long id, long monto){
+		return  this.cuentas.stream().filter(cuenta -> (cuenta.getId() == id)).findFirst().get().extraer(monto);
 	}
 }

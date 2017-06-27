@@ -9,7 +9,9 @@ public class Cliente {
 	public List<Cuenta> cuentas = new ArrayList<Cuenta>();
 	public List<CuentaCorriente> cuentasCorrientes = new ArrayList<CuentaCorriente>();
 
-	
+	public String getNombre(){
+		return this.nombre;
+	}
 	
 	public Cliente(long nroCliente,String nombreCliente){
 		this.id = nroCliente;
@@ -28,7 +30,7 @@ public class Cliente {
 	
 	public void agregarCuenta(Cuenta cuenta){
 		if (! existeCuenta(cuenta)){
-			if ((this.getCuentas().size() + 1) < this.getCuentasCorrientes().size()){
+			if ((this.getCuentas().size() + 1) <= this.getCuentasCorrientes().size()){
 				this.getCuentas().add(cuenta);
 			}else{
 				System.out.println("Error no se puede agregar mas cuentas, la cantidad de cuentas debe ser menor a cuentas corrientes");

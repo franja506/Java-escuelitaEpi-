@@ -17,6 +17,13 @@ public class Banco {
 		this.nombre = nombreBanco;
 	}
 
+	public long getId(){
+		return this.id;
+	}
+	
+	public String getNombre(){
+		return this.nombre;
+	}
 	
 	public List<Cliente> getClientes() {
 		return clientes;

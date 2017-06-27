@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class CuentaCorrienteTest {
 	
-	CuentaCorriente nuevaCuenta = new CuentaCorriente(222,"pepe", "Banco Galicia", 8000);
+	CuentaCorriente nuevaCuenta = new CuentaCorriente(222,null, 8000);
 
 	@Test
 	public void testDepositarEnCuentaCorriente() {
@@ -28,11 +28,10 @@ public class CuentaCorrienteTest {
 		assertEquals(7000 ,nuevaCuenta.getSaldo());
 	}
 	
-	@Test
+	@Test(expected=excepcionFondosInsuficientes.class)
 	public void testExtraerDeCuentaCorrienteMontoMayorAlMaximo(){
 		nuevaCuenta.depositar(100);	
-		boolean extraer = nuevaCuenta.extraer(9100);
-		assertFalse(extraer);
+		nuevaCuenta.extraer(9100);
 	}
 
 	@Test
@@ -62,15 +61,13 @@ public class CuentaCorrienteTest {
 		assertEquals(7000 ,nuevaCuenta.getSaldo());
 	}
 	
-	@Test
+	@Test(expected=excepcionMontoNegativo.class)
 	public void testExtraerMontoNegativo(){
-		boolean extraer = nuevaCuenta.extraer(-100);
-		assertFalse(extraer);
+		nuevaCuenta.extraer(-100);
 	}
 	
-	@Test
+	@Test(expected=excepcionMontoNegativo.class)
 	public void testDepositarMontoNegativo(){
-		boolean depositar = nuevaCuenta.depositar(-100);
-		assertFalse(depositar);
+		nuevaCuenta.depositar(-100);
 	}
 }

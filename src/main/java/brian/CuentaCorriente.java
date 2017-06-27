@@ -14,7 +14,7 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 		this.giroEnDescubiertoUtilizado = giroEnDescubiertoUtilizado;
 	}
 
-	public CuentaCorriente(long id, String nombreCliente, long giroEnDescubierto) {
+	public CuentaCorriente(long id, long giroEnDescubierto, String nombreCliente ) {
 		super(id, nombreCliente);
 		this.setGiroEnDescubierto(giroEnDescubierto);
 	}

@@ -8,11 +8,15 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 	public long deudaAPagar;
 	public int flag;
 
-	public CuentaCorriente(long id, String nombreCliente, String nombreBanco, long saldoEnDescubierto) {
-		super(id, nombreCliente, nombreBanco);
+	public CuentaCorriente(long id, Cliente cliente, long saldoEnDescubierto) {
+		super(id, cliente);
 		this.saldoEnDescubierto = saldoEnDescubierto;
 	}
 
+	public boolean esCorriente(){
+		return true;
+	}
+	
 	@Override
 	public boolean depositar(long montoADepositar) {
 		if(montoADepositar > 0){
@@ -39,8 +43,7 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 			}
 		}
 		}else {
-		System.out.println("No se pueden depositar montos negativos");
-		return false;
+			throw new excepcionMontoNegativo();
 		}
 	return false;
 }
@@ -62,23 +65,18 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 				deudaAPagar(saldoActualziado);
 				return true;
 		} else if (saldoRestante <= 0 && this.flag == 1){
-			System.out.println("Saldo insuficiente. Su saldo actual: " + saldoActualziado); /* indica el saldo disponible incluyendo el giro en descubierto*/																				
-			return false;
+			throw new excepcionFondosInsuficientes();
 		}
 		}
-		else{
-			System.out.println("No se puede extraer un monto negativo");					
-			return false;
 		}
-		}
-	return false; 
+	throw new excepcionMontoNegativo(); 
 }
 
 	public void setGiroEnDescubierto(long n) {
 		this.saldoEnDescubierto = n;
 	}
 
-	@Override
+
 	public long giroEnDescubiertoHabilidado() {
 		return this.saldo + this.saldoEnDescubierto;
 	}
