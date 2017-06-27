@@ -1,13 +1,12 @@
-package gabrielegreco;
+/*package gabrielegreco;
 
 import dipi.ICuentaCorriente;
 
 public class CuentaCorriente extends Cuenta  implements ICuentaCorriente{
 	private int giroDescubierto;
-	private int estadoGiroDescubierto;
 
 	public CuentaCorriente(long id, int giroDescubierto) {
-		super(id);
+		super(id,0);
 		this.giroDescubierto = giroDescubierto;
 
 	}
@@ -29,14 +28,16 @@ public class CuentaCorriente extends Cuenta  implements ICuentaCorriente{
 
 	}
 
-	public long giroEnDescubiertoHabilidado() {
-		if (giroDescubierto == 0) {
-			return 0;
-		} else {
-			return 1;
-		}
+	public int getGiroDescubierto() {
+		return giroDescubierto;
+	}
+
+	public void setGiroDescubierto(int giroDescubierto) {
+		this.giroDescubierto = giroDescubierto;
 	}
 
 	
 
-}
+	
+
+}*/

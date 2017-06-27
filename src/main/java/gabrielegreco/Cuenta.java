@@ -1,17 +1,19 @@
 package gabrielegreco;
 
+import dipi.ICliente;
 import dipi.ICuenta;
 
 public class Cuenta implements ICuenta{
 
 	private long saldo;
 	private long id;
-
-	public Cuenta(long id) {
+	private int montoDescubierto;
+	public Cuenta(long id, int montoDescubierto) {
 
 		this.id = id;
+		this.montoDescubierto=montoDescubierto;
 		saldo = 0;
-
+		
 	}
 
 	public boolean depositar(long montoADepositar) {
@@ -24,14 +26,28 @@ public class Cuenta implements ICuenta{
 
 	}
 
-	public boolean extraer(long montoasacar) {
-		if (montoasacar < saldo && montoasacar > 0) {
-			saldo = saldo - montoasacar;
+	public boolean extraer(long montoAExtraer) {
+		if(montoDescubierto==0){
+		if (montoAExtraer < saldo && montoAExtraer > 0) {
+			saldo = saldo - montoAExtraer;
 			return true;
 		} else {
 			return false;
 		}
+		}
+		else {
+			if ((montoAExtraer > 0) && ((saldo - montoAExtraer) >= montoDescubierto)) {
+				
+				setSaldo(saldo - montoAExtraer);
+				System.out.println("monto a sacar aceptado");
 
+				return true;
+
+			} else {
+				System.out.println("monto a sacar denegado");
+				return false;
+			}
+		}
 	}
 
 	public long getSaldo() {
@@ -54,5 +70,12 @@ public class Cuenta implements ICuenta{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public ICliente getCliente() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }
