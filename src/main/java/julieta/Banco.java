@@ -3,23 +3,27 @@ package julieta;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Banco {
+import dipi.IBanco;
+import dipi.ICliente;
+import dipi.ICuenta;
+
+public class Banco implements IBanco {
 	
 	protected String nombreBanco;
-	protected Set<Cuenta> cuentas;
-	protected HashSet<Cliente> clientes;
+	protected Set<ICuenta> cuentas;
+	protected Set<ICliente> clientes;
 
 	public Banco(String nombre) {
 		this.nombreBanco = nombre;
-		this.cuentas = new HashSet<Cuenta>();
-		this.clientes = new HashSet<Cliente>();
+		this.cuentas = new HashSet<ICuenta>();
+		this.clientes = new HashSet<ICliente>();
 	}
 
-	public Set<Cuenta> getCuentas() {
+	public Set<ICuenta> getCuentas() {
 		return this.cuentas;
 	}
 	
-	public Set<Cliente> getClientes() {
+	public Set<ICliente> getClientes() {
 		return this.clientes;
 	}
 	
@@ -53,6 +57,12 @@ public class Banco {
 
 	public boolean idUnico(long id){
 		return !this.cuentas.stream().anyMatch(cuenta -> cuenta.getId() == id);
+	}
+
+	@Override
+	public String getNombre() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

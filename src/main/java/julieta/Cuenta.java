@@ -1,14 +1,15 @@
 package julieta;
 
+import dipi.ICliente;
 import dipi.ICuenta;
 
 public class Cuenta implements ICuenta {
 
 		protected long id;
 		protected long saldo;
-		protected Cliente cliente;
+		protected ICliente cliente;
 		
-		public Cuenta(long id, Cliente cliente){
+		public Cuenta(long id, ICliente cliente){
 			this.id = id;
 			this.cliente = cliente;
 		}
@@ -51,5 +52,10 @@ public class Cuenta implements ICuenta {
 
 		public long getSaldo() {
 			return this.saldo;
+		}
+
+		@Override
+		public ICliente getCliente() {
+			return this.cliente;
 		}
 }
