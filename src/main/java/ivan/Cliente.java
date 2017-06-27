@@ -1,13 +1,17 @@
 package ivan;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class Cliente {
+import dipi.ICuenta;
+
+public class Cliente implements dipi.ICliente{
 	public long id;
 	public String nombre;
-	public List<Cuenta> cuentas = new ArrayList<Cuenta>();
-	public List<CuentaCorriente> cuentasCorrientes = new ArrayList<CuentaCorriente>();
+	public Set<ICuenta> cuentas = new HashSet<ICuenta>();
+	
 
 	public String getNombre(){
 		return this.nombre;
@@ -20,7 +24,7 @@ public class Cliente {
 	
 	public void agregarCuentaCorriente(CuentaCorriente cuentaCorriente){
 		if (! existeCuentaCorriente(cuentaCorriente)){
-			this.getCuentasCorrientes().add(cuentaCorriente);
+			this.getCuentas().add(cuentaCorriente);
 		}
 		else{
 			System.out.println("Error. cuenta corriente existente");
@@ -28,7 +32,7 @@ public class Cliente {
 		
 	}
 	
-	public void agregarCuenta(Cuenta cuenta){
+/*	public void agregarCuenta(Cuenta cuenta){
 		if (! existeCuenta(cuenta)){
 			if ((this.getCuentas().size() + 1) <= this.getCuentasCorrientes().size()){
 				this.getCuentas().add(cuenta);
@@ -39,41 +43,25 @@ public class Cliente {
 		else{
 			System.out.println("Error cuenta existente");
 		}
-	}
+	}*/
 	
 	public boolean existeCuenta(Cuenta cuenta){
-		for(Cuenta c : this.getCuentas()){
-			if (c.getId() == cuenta.getId()){
-				return true;
-			}
-		}
-		return false;
+		return this.getCuentas().contains(cuenta);
 	}
 	
 	public boolean existeCuentaCorriente(CuentaCorriente cuentaCorriente){
-		for (CuentaCorriente cc : this.getCuentasCorrientes()){
-			if (cc.getId() == cuentaCorriente.getId()){
-				return true;
-			}
-		}
-		return false;
+		return this.getCuentas().contains(cuentaCorriente);
 	}
 	
-	public List<Cuenta> getCuentas() {
+	public Set<ICuenta> getCuentas() {
 		return cuentas;
 	}
 
-	public void setCuentas(List<Cuenta> cuentas) {
+	public void setCuentas(HashSet<ICuenta>cuentas) {
 		this.cuentas = cuentas;
 	}
 
-	public List<CuentaCorriente> getCuentasCorrientes() {
-		return cuentasCorrientes;
-	}
 
-	public void setCuentasCorrientes(List<CuentaCorriente> cuentasCorrientes) {
-		this.cuentasCorrientes = cuentasCorrientes;
-	}
 
 	public long getId(){
 		return this.id;

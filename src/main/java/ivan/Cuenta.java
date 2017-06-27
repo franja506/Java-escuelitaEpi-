@@ -2,14 +2,14 @@ package ivan;
 
 public class Cuenta implements dipi.ICuenta {
 	public long saldo;
-	private String nombreCliente;
+	private Cliente cliente;
 	private long id;
 	
 	
-	public Cuenta(long nro, String cliente ){
+	public Cuenta(long nro, Cliente cliente ){
 		this.saldo=0;
 		this.id=nro;
-		this.nombreCliente=cliente;
+		this.cliente=cliente;
 		
 	}
 	public long getSaldo() {
@@ -17,12 +17,10 @@ public class Cuenta implements dipi.ICuenta {
 	}
 
 
-	public String getNombreCliente() {
-		return nombreCliente;
+	public Cliente getCliente() {
+		return cliente;
 	}
-	public void setNombreCliente(String nombreCliente) {
-		this.nombreCliente = nombreCliente;
-	}
+
 	public long getId() {
 		return id;
 	}
@@ -60,10 +58,11 @@ public class Cuenta implements dipi.ICuenta {
 		
 	}
 	
+	@Override
 	 public String toString() {
 	        return "Cuenta{" +
 	                "id=" + id +
-	                ", cliente='" + nombreCliente + 
+	                ", cliente='" + cliente + 
 	                ", saldo=" + saldo +
 	                '}';
 	} 

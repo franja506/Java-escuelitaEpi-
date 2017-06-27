@@ -6,9 +6,10 @@ import org.junit.Test;
 
 public class CuentaTest {
 	int nro = 1234;
-	String cliente= "ivan delcuadri";
+	Cliente cliente= new Cliente(1,"ivan");
+	Cliente cli2= new Cliente(2,"pepe");
 	Cuenta cuenta = new Cuenta(nro, cliente);
-	Cuenta c2  = new Cuenta(2,"pepe");
+	Cuenta c2  = new Cuenta(2,cli2);
 	
 	
 

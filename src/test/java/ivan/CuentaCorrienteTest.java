@@ -5,9 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CuentaCorrienteTest {
-	CuentaCorriente c3 = new CuentaCorriente(3,"jose",100);
-	CuentaCorriente c4 = new CuentaCorriente(4,"juan",10);
-	CuentaCorriente c5 = new CuentaCorriente(5,"lg",100);
+	Cliente cliente= new Cliente(1,"ivan");
+	Cliente cli2= new Cliente(2,"pepe");
+	Cliente cli3= new Cliente(2,"lg");
+	CuentaCorriente c3 = new CuentaCorriente(3,cliente,100);
+	CuentaCorriente c4 = new CuentaCorriente(4,cli2,10);
+	CuentaCorriente c5 = new CuentaCorriente(5,cli3,100);
 	
 	@Test
 	public void probarGiroFuncionando(){

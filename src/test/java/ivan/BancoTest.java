@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class BancoTest {
-	
+	/*
 	Banco banco = new Banco(1,"Banco Provincia");
 	Cuenta c1 = new Cuenta(1,"ivan");
 	Cuenta c12 = new Cuenta(1,"ivan");
@@ -60,7 +60,7 @@ public class BancoTest {
 		assertEquals(1,banco.getClientes().size());
 	}
 	
-	
+	*/
 	
 
 }

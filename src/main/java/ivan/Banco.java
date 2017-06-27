@@ -1,13 +1,17 @@
 package ivan;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class Banco {
+import dipi.ICliente;
+import dipi.ICuenta;
+/*
+public class Banco implements dipi.IBanco{
 	
-	public List<Cliente> clientes = new ArrayList<Cliente>();
-	public List<Cuenta> cuentas = new ArrayList<Cuenta>();
-	public List<CuentaCorriente> cuentasCorrientes = new ArrayList<CuentaCorriente>();
+	public Set<ICliente> clientes = new HashSet<ICliente>();
+	public Set<ICuenta> cuentas = new HashSet<ICuenta>();
 	public String nombre;
 	public long id;
 	
@@ -25,35 +29,28 @@ public class Banco {
 		return this.nombre;
 	}
 	
-	public List<Cliente> getClientes() {
+	public Set<ICliente> getClientes() {
 		return clientes;
 	}
 
 
-	public void setClientes(List<Cliente> clientes) {
+	public void setClientes(Set<ICliente> clientes) {
 		this.clientes = clientes;
 	}
 
 
-	public List<Cuenta> getCuentas() {
+	public Set<ICuenta> getCuentas() {
 		return cuentas;
 	}
 
 
-	public void setCuentas(List<Cuenta> cuentas) {
+	public void setCuentas(Set<ICuenta> cuentas) {
 		this.cuentas = cuentas;
 	}
 
 
-	public List<CuentaCorriente> getCuentasCorrientes() {
-		return cuentasCorrientes;
-	}
-
-
-	public void setCuentasCorrientes(List<CuentaCorriente> cuentasCorrientes) {
-		this.cuentasCorrientes = cuentasCorrientes;
-	}
-
+	
+	
 	public boolean existeCuenta(Cuenta cuenta){
 		for(Cuenta c : this.getCuentas()){
 			if (c.getId() == cuenta.getId()){
@@ -80,6 +77,7 @@ public class Banco {
 		}
 		return false;
 	}
+	
 	public void agregarCliente(Cliente cliente){
 		if(! existeCliente(cliente)){
 			this.getClientes().add(cliente);
@@ -109,3 +107,4 @@ public class Banco {
 		
 	}
 }
+*/

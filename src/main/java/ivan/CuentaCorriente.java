@@ -11,7 +11,7 @@ public class CuentaCorriente extends Cuenta  implements dipi.ICuentaCorriente{
 		this.giroDescubierto = giroDescubierto;
 	}
 	
-	public  CuentaCorriente (long nroCuenta, String cliente, long giro ){
+	public  CuentaCorriente (long nroCuenta, Cliente cliente, long giro ){
 		super(nroCuenta, cliente);		 
 		this.setGiroDescubierto(giro);
 		
@@ -42,7 +42,7 @@ public class CuentaCorriente extends Cuenta  implements dipi.ICuentaCorriente{
 	 public String toString() {
 	        return "CuentaCorriente{" +
 	                "id=" + this.getId() +
-	                ", cliente='" + this.getNombreCliente() + 
+	                ", cliente='" + this.getCliente() + 
 	                ", saldo=" + saldo +
 	                ", giroDescubierto=" + this.getGiroDescubierto() +
 	                '}';
