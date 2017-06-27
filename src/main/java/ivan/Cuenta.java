@@ -59,5 +59,13 @@ public class Cuenta implements dipi.ICuenta {
 		}
 		
 	}
+	
+	 public String toString() {
+	        return "Cuenta{" +
+	                "id=" + id +
+	                ", cliente='" + nombreCliente + 
+	                ", saldo=" + saldo +
+	                '}';
+	} 
 
 }

@@ -39,4 +39,12 @@ public class CuentaCorriente extends Cuenta  implements dipi.ICuentaCorriente{
 		}
 	}
 
+	 public String toString() {
+	        return "CuentaCorriente{" +
+	                "id=" + this.getId() +
+	                ", cliente='" + this.getNombreCliente() + 
+	                ", saldo=" + saldo +
+	                ", giroDescubierto=" + this.getGiroDescubierto() +
+	                '}';
+	}
 }
