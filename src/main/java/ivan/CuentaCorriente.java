@@ -42,9 +42,28 @@ public class CuentaCorriente extends Cuenta  implements dipi.ICuentaCorriente{
 	 public String toString() {
 	        return "CuentaCorriente{" +
 	                "id=" + this.getId() +
-	                ", cliente='" + this.getCliente() + 
+	                ", cliente='" + this.getCliente().getNombre() + 
 	                ", saldo=" + saldo +
 	                ", giroDescubierto=" + this.getGiroDescubierto() +
 	                '}';
+	}
+	 
+	 public boolean soyCuenta(){
+		 return false;
+	 }
+	 
+	public boolean equals(CuentaCorriente cuentaCC){
+		if (cuentaCC instanceof CuentaCorriente){
+			CuentaCorriente c = (CuentaCorriente) cuentaCC;
+			return (this.getId() == c.getId() && this.getCliente().equals(c.getCliente())); 
+		}
+		else{
+			return false;
+		}
+			
+	}
+		
+	public int hashCode(){
+		return (int) (this.getId() + this.getCliente().getNombre().length());
 	}
 }

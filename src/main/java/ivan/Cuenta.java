@@ -65,6 +65,26 @@ public class Cuenta implements dipi.ICuenta {
 	                ", cliente='" + cliente + 
 	                ", saldo=" + saldo +
 	                '}';
-	} 
+	}
+	
+	
+	public boolean equals(Cuenta cuenta){
+		if (cuenta instanceof Cuenta){
+			Cuenta c = (Cuenta) cuenta;
+			return (this.id == c.getId() && this.cliente.equals(c.getCliente())); 
+		}
+		else{
+			return false;
+		}
+		
+	}
+	
+	public int hashCode(){
+		return (int) (this.id + this.getCliente().getNombre().length());
+	}
+	
+	public boolean soyCuenta(){
+		return true;
+	}
 
 }

@@ -21,7 +21,7 @@ public class ClienteTest {
 		assertEquals(2, cliente.getId());
 		assertEquals("pepe",cliente.getNombre());
 	}
-	/*
+	
 	@Test
 	public void agregarCuentaSinTenerCC() {
 		cli.agregarCuenta(c1);
@@ -30,35 +30,37 @@ public class ClienteTest {
 	
 	@Test
 	public void agregarCuenta() {
-		cli.agregarCuentaCorriente(c2);
-		cli.agregarCuenta(c1);
-		assertEquals(1, cli.getCuentas().size());
+		cli.agregarCuenta(c2);
+		cli.agregarCuenta(new CuentaCorriente(34,cli4,1000));
+		cli.agregarCuenta(new Cuenta(23,cli4));
+		assertEquals(3, cli.getCuentas().size());
 	}
+	
 	
 	@Test
 	public void agregarCuentaRepetida() {
 		Cliente cli2 = new Cliente(3,"felipe"); 
-		cli2.agregarCuentaCorriente(new CuentaCorriente(3,"karina",120));
-		cli2.agregarCuentaCorriente(new CuentaCorriente(5,"gabriel",100));
+		cli2.agregarCuenta(new CuentaCorriente(3,cli2,120));
+		cli2.agregarCuenta(new CuentaCorriente(5,cli2,100));
 		cli2.agregarCuenta(c3);
-		assertEquals(1, cli2.getCuentas().size());
+		assertEquals(3, cli2.getCuentas().size());
 		cli2.agregarCuenta(c3);
-		assertEquals(1, cli2.getCuentas().size());
+		assertEquals(3, cli2.getCuentas().size());
 	}
 	
 	@Test
 	public void agregarCuentaCorriente() {
-		cli.agregarCuentaCorriente(c2);
-		assertEquals(1, cli.getCuentasCorrientes().size());
+		cli.agregarCuenta(c2);
+		assertEquals(1, cli.getCuentas().size());
 	}
 	
 	@Test
 	public void agregarCuentaCorrienteRepetida() {
-		cli.agregarCuentaCorriente(c2);
-		cli.agregarCuentaCorriente(c2);
-		assertEquals(1, cli.getCuentasCorrientes().size());
+		cli.agregarCuenta(c2);
+		cli.agregarCuenta(c2);
+		assertEquals(1, cli.getCuentas().size());
 	}
 	
-  */	
+  
 
 }
