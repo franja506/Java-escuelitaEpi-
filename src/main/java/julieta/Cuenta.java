@@ -4,41 +4,37 @@ import dipi.ICuenta;
 
 public class Cuenta implements ICuenta {
 
-		public long id;
-		public long saldo;
-		public String nombreCliente;
-		public String nombreBanco;
+		protected long id;
+		protected long saldo;
+		protected Cliente cliente;
 		
-		
-		public Cuenta(long id, String nombreCliente, String nombreBanco){
+		public Cuenta(long id, Cliente cliente){
 			this.id = id;
-			this.nombreCliente = nombreCliente;
-			this.nombreBanco = nombreBanco;
+			this.cliente = cliente;
+		}
+		
+		public boolean esCorriente(){
+			return false;
 		}
 
-		@Override
 		public long getId() {
 			return this.id;
 		}
 
-		@Override
 		public String getNombreCliente() {
 			return this.getNombreCliente();
 		}
 
-		@Override
 		public boolean depositar(long montoADepositar) {
 			if (montoADepositar > 0){
 				this.saldo = this.saldo + montoADepositar;
 				return true;
 			}
 			else {
-			System.out.println("No se pueden depositar montos negativos");
-			return false;
+				throw new excepcionMontoNegativo();
 			}
 		}
 
-		@Override
 		public boolean extraer(long montoAExtraer) {
 			if(montoAExtraer > 0){
 				long saldoRestante = this.saldo - montoAExtraer;
@@ -46,16 +42,13 @@ public class Cuenta implements ICuenta {
 					this.saldo = this.saldo - montoAExtraer;
 					return true;
 				}else{
-					System.out.println("Saldo insuficiente. Su saldo actual: " + this.getSaldo());
-					return false;
+					throw new excepcionFondosInsuficientes();
 				}
 			}else{
-				System.out.println("No se pueden extraer montos negativos");
-				return false;
+				throw new excepcionMontoNegativo();
 			}
 			}
 
-		@Override
 		public long getSaldo() {
 			return this.saldo;
 		}
