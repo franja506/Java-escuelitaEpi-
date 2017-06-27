@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class CuentaCorrienteTest {
 
-	CuentaCorriente cc = new CuentaCorriente(1, "Brian", 1000);
+	CuentaCorriente cc = new CuentaCorriente(1, 1000, "Brian");
 
 	@Test
 	public void testDepositar() {
