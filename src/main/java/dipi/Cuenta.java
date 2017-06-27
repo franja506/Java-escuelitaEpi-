@@ -17,13 +17,6 @@ public class Cuenta implements ICuenta {
 		return super.toString() + "id:" + this.getId();
 	}
 
-
-	@Override
-	public String getNombreCliente() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public boolean depositar(long montoADepositar) {
 		// TODO Auto-generated method stub
@@ -31,8 +24,14 @@ public class Cuenta implements ICuenta {
 	}
 
 	@Override
-	public boolean extraer(long montoAExtraer) {
-		// TODO Auto-generated method stub
+	public boolean extraer(long montoAExtraer) 
+			throws MontoNegativoCuentaException {
+		if (montoAExtraer<0) {
+			throw new MontoNegativoCuentaException("El monto es invalido.");
+		}
+		if (montoAExtraer>this.getSaldo()) {
+			throw new IllegalArgumentException("El monto es mayor al saldo.");
+		}
 		return false;
 	}
 
@@ -40,6 +39,12 @@ public class Cuenta implements ICuenta {
 	public long getSaldo() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public ICliente getCliente() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

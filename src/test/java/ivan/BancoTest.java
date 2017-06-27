@@ -8,6 +8,7 @@ public class BancoTest {
 	
 	Banco banco = new Banco(1,"Banco Provincia");
 	Cuenta c1 = new Cuenta(1,"ivan");
+	Cuenta c12 = new Cuenta(1,"ivan");
 	CuentaCorriente c2 = new CuentaCorriente(2,"jose",100);
 	Cliente cliente = new Cliente(1,"gustavo");
 	
@@ -28,6 +29,8 @@ public class BancoTest {
 	public void AgregarCuentaRepetida() {
 		banco.agregarCuenta(c1);
 		banco.agregarCuenta(c1);
+		assertEquals(1,banco.getCuentas().size());
+		banco.agregarCuenta(c12);
 		assertEquals(1,banco.getCuentas().size());
 	}
 	
