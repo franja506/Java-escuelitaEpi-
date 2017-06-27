@@ -1,10 +1,11 @@
 package centurionDenis;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import dipi.ICuenta;
 
-public class Cliente {
+public class Cliente implements dipi.ICliente{
 	
 	private int cantidadCuenta;
 	private int cantidadCuentaCorriente;
@@ -13,7 +14,8 @@ public class Cliente {
 	private String nombreDelCliente;
 	private int nroCliente;
 	
-	public Cliente(int nroCliente, String nombre, String tipoCuenta, int nroCuenta, int saldo) {
+	public Cliente(int nroCliente, String nombre, 
+				String tipoCuenta, int nroCuenta, int saldo) {
 		setNroCliente(nroCliente);
 		setNombreDelCliente(nombre);
 		setTipoDeCuenta(tipoCuenta);
@@ -92,5 +94,19 @@ public class Cliente {
 	
 	public int cantidadDeCuentas(){
 		return cantidadCuenta;
+	}
+
+
+	public Set<ICuenta> getCuentas() {
+		
+		
+		
+		return null;
+	}
+
+
+	public String getNombre() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

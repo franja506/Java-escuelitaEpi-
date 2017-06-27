@@ -1,5 +1,7 @@
 package centurionDenis;
 
+import dipi.ICliente;
+
 public class Cuenta implements dipi.ICuenta {
 
 	private String nombreCliente;
@@ -97,6 +99,11 @@ public class Cuenta implements dipi.ICuenta {
 		if (nroCuenta != other.nroCuenta)
 			return false;
 		return true;
+	}
+
+	public ICliente getCliente() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
