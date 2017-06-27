@@ -2,7 +2,8 @@ package dipi;
 
 import java.util.Set;
 
-public interface ICliente {
+public interface IBanco {
 	public Set<ICuenta> getCuentas();
+	public Set<ICliente> getClientes();
 	public String getNombre();
 }
