@@ -7,6 +7,8 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import dipi.MontoNegativoCuentaException;
+
 public class ClienteTest {
 	
 	Cliente unCliente = new Cliente("pepe");
@@ -38,14 +40,14 @@ public class ClienteTest {
 	}
 	
 	@Test
-	public void testDepositarEnCuenta(){
+	public void testDepositarEnCuenta() throws MontoNegativoCuentaException{
 		unCliente.crearCuentaCorriente(221,8000);
 		boolean salida = unCliente.depositarEnCuenta(221, 500);
 		assertTrue(salida);
 	}
 	
 	@Test
-	public void testExtraerDeCuenta(){
+	public void testExtraerDeCuenta() throws MontoNegativoCuentaException{
 		unCliente.crearCuentaCorriente(221,8000);
 		unCliente.crearCuentaCorriente(222,8000);
 		unCliente.crearCuenta(321);
@@ -55,7 +57,7 @@ public class ClienteTest {
 	}
 	
 	@Test(expected=excepcionFondosInsuficientes.class)
-	public void testExtraerDeCuentaSinFondos(){
+	public void testExtraerDeCuentaSinFondos() throws MontoNegativoCuentaException{
 		unCliente.crearCuentaCorriente(221,8000);
 		unCliente.crearCuentaCorriente(222,8000);
 		unCliente.crearCuenta(321);

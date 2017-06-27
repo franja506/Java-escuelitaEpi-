@@ -2,18 +2,21 @@ package brian;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import dipi.IBanco;
+import dipi.ICliente;
 import dipi.ICuenta;
 
-public class Banco {
+public class Banco implements IBanco{
 	private List<Cuenta> cuentas;
 	private List<Cliente> clientes;
 	private String nombre;
 
 	public Banco(String nombre) {
-		this.cuentas = new ArrayList<Cuenta>();
+		this.cuentas  = new ArrayList<Cuenta>();
 		this.clientes = new ArrayList<Cliente>();
-		this.nombre = nombre;
+		this.nombre   = nombre;
 	}
 
 	public void altaCliente(String nombre) {
@@ -23,8 +26,8 @@ public class Banco {
 		CuentaCorriente cc2 = new CuentaCorriente(cuentas.size(), (long) (Math.random() * 4000 + 1000), nombre);
 
 		c.getCuentas().add(c1);
-		c.getCc().add(cc);
-		c.getCc().add(cc2);
+//		c.getCc().add(cc);
+//		c.getCc().add(cc2);
 
 		this.altaCuenta(cc);
 		this.altaCuenta(cc2);
@@ -39,17 +42,17 @@ public class Banco {
 			this.cuentas.add((CuentaCorriente) c);
 	}
 
-	public List<Cuenta> getCuentas() {
-		return cuentas;
-	}
+//	public List<Cuenta> getCuentas() {
+//		return cuentas;
+//	}
 
 	public void setCuentas(List<Cuenta> cuentas) {
 		this.cuentas = cuentas;
 	}
 
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
+//	public List<Cliente> getClientes() {
+//		return clientes;
+//	}
 
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
@@ -61,5 +64,15 @@ public class Banco {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public Set<ICuenta> getCuentas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Set<ICliente> getClientes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

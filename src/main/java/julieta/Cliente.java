@@ -3,17 +3,21 @@ package julieta;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Cliente {
+import dipi.ICliente;
+import dipi.ICuenta;
+import dipi.MontoNegativoCuentaException;
+
+public class Cliente implements ICliente{
 
 	protected String nombreCliente;
-	protected Set<Cuenta> cuentas;
+	protected Set<ICuenta> cuentas;
 
 	public Cliente(String nombre) {
 		this.nombreCliente = nombre;
-		this.cuentas = new HashSet<Cuenta>();
+		this.cuentas = new HashSet<ICuenta>();
 	}
 
-	public Set<Cuenta> getCuentas() {
+	public Set<ICuenta> getCuentas() {
 		return this.cuentas;
 	}
 
@@ -38,8 +42,8 @@ public class Cliente {
 	}
 
 	protected boolean sePuedeAgregarCuenta() {
-		long cuentas = this.cuentas.stream().filter(cuenta -> cuenta.esCorriente() == false).count();
-		long cuentasCorrientes = this.cuentas.stream().filter(cuenta -> cuenta.esCorriente()).count();
+		long cuentas = this.cuentas.stream().filter(cuenta -> ((Cuenta) cuenta).esCorriente() == false).count();
+		long cuentasCorrientes = this.cuentas.stream().filter(cuenta -> ((Cuenta) cuenta).esCorriente()).count();
 		if (cuentasCorrientes > (cuentas + 1)) {
 			return true;
 		} else {
@@ -47,11 +51,16 @@ public class Cliente {
 		}
 	}
 	
-	public boolean depositarEnCuenta(long id, long monto){
+	public boolean depositarEnCuenta(long id, long monto) throws MontoNegativoCuentaException{
 		return  this.cuentas.stream().filter(cuenta -> (cuenta.getId() == id)).findFirst().get().depositar(monto);
 	}
 	
-	public boolean extraerDeCuenta(long id, long monto){
+	public boolean extraerDeCuenta(long id, long monto) throws MontoNegativoCuentaException{
 		return  this.cuentas.stream().filter(cuenta -> (cuenta.getId() == id)).findFirst().get().extraer(monto);
+	}
+
+	@Override
+	public String getNombre() {
+		return this.nombreCliente;
 	}
 }
