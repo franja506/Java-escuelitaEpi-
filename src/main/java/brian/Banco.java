@@ -17,9 +17,13 @@ public class Banco implements IBanco {
 		this.clientes = new HashSet<ICliente>();
 		this.nombre = nombre;
 	}
-	
+
 	public void altaCuenta(ICuenta c) {
 		this.cuentas.add(c);
+	}
+
+	public void altaCuentas(Set<ICuenta> c) {
+		this.cuentas.addAll(c);
 	}
 
 	public String getNombre() {
@@ -40,18 +44,15 @@ public class Banco implements IBanco {
 
 	@Override
 	public void agregarCliente(ICliente cliente) {
-		Cuenta c1 = new Cuenta(cuentas.size(), cliente);
-		CuentaCorriente cc = new CuentaCorriente(cuentas.size(), (long) (Math.random() * 4000 + 1000), cliente);
-		CuentaCorriente cc2 = new CuentaCorriente(cuentas.size(), (long) (Math.random() * 4000 + 1000), cliente);
+		Cuenta c1 = new Cuenta(this.cuentas.size(), cliente);
+		CuentaCorriente cc = new CuentaCorriente(this.cuentas.size(), (long) (Math.random() * 4000 + 1000), cliente);
+		CuentaCorriente cc2 = new CuentaCorriente(this.cuentas.size(), (long) (Math.random() * 4000 + 1000), cliente);
 
 		cliente.getCuentas().add(c1);
 		cliente.getCuentas().add(cc);
 		cliente.getCuentas().add(cc2);
 
-		this.altaCuenta(cc);
-		this.altaCuenta(cc2);
-		this.altaCuenta(c1);
-		
+		this.altaCuentas(cliente.getCuentas());
 		this.clientes.add(cliente);
 	}
 }
