@@ -34,10 +34,12 @@ public class Cliente implements ICliente {
 
 	@Override
 	public void agregarCuenta(ICuenta cuenta) {
-		if (this.cuentas.size() >= 3) {
+		if (this.cuentas.size() >= 3 && cuenta instanceof Cuenta) {
 			if (this.controlCuentas()) {
 				this.getCuentas().add(cuenta);
 			}
+		} else {
+			this.getCuentas().add(cuenta);
 		}
 	}
 
