@@ -5,8 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CuentaCorrienteTest {
-
-	CuentaCorriente cc = new CuentaCorriente(1, 1000, "Brian");
+	
+	Cliente cliente = new Cliente("Brian");
+	CuentaCorriente cc = new CuentaCorriente(1, 1000, cliente);
 
 	@Test
 	public void testDepositar() {

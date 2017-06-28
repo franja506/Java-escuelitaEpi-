@@ -1,6 +1,7 @@
 package brian;
 
 import dipi.ICuentaCorriente;
+import dipi.ICliente;
 
 public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 	private long giroEnDescubierto;
@@ -14,8 +15,8 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 		this.giroEnDescubiertoUtilizado = giroEnDescubiertoUtilizado;
 	}
 
-	public CuentaCorriente(long id, long giroEnDescubierto, String nombreCliente ) {
-		super(id, nombreCliente);
+	public CuentaCorriente(long id, long giroEnDescubierto, ICliente cliente) {
+		super(id, cliente);
 		this.setGiroEnDescubierto(giroEnDescubierto);
 	}
 

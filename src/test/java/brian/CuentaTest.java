@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CuentaTest {
-
-	Cuenta c = new Cuenta(1, "Brian");
+	Cliente cliente = new Cliente("Brian");
+	Cuenta c = new Cuenta(1, cliente);
 
 	@Test
 	public void testDepositar() {

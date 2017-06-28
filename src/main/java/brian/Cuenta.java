@@ -6,24 +6,16 @@ import dipi.ICuenta;
 public class Cuenta implements ICuenta {
 	private long id;
 	private long saldo;
-	private String nombreCliente;
+	private ICliente cliente;
 
-	public Cuenta(long id, String nombreCliente) {
+	public Cuenta(long id, ICliente cliente) {
 		this.id = id;
-		this.setNombreCliente(nombreCliente);
+		this.cliente = cliente;
 		this.setSaldo(0);
-	}
-
-	public void setNombreCliente(String nombreCliente) {
-		this.nombreCliente = nombreCliente;
 	}
 
 	public long getSaldo() {
 		return this.saldo;
-	}
-
-	public String getNombreCliente() {
-		return this.nombreCliente;
 	}
 
 	public boolean depositar(long montoADepositar) {
@@ -53,7 +45,6 @@ public class Cuenta implements ICuenta {
 	}
 
 	public ICliente getCliente() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.cliente;
 	}
 }

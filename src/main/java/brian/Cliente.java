@@ -30,4 +30,9 @@ public class Cliente implements ICliente{
 	public void setCuentas(Set<ICuenta> cuentas) {
 		this.cuentas = cuentas;
 	}
+
+	@Override
+	public void agregarCuenta(ICuenta cuenta) {
+		this.getCuentas().add(cuenta);
+	}
 }

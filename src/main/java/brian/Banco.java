@@ -1,61 +1,25 @@
 package brian;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import dipi.IBanco;
 import dipi.ICliente;
 import dipi.ICuenta;
 
-public class Banco implements IBanco{
-	private List<Cuenta> cuentas;
-	private List<Cliente> clientes;
+public class Banco implements IBanco {
+	private Set<ICuenta> cuentas;
+	private Set<ICliente> clientes;
 	private String nombre;
 
 	public Banco(String nombre) {
-		this.cuentas  = new ArrayList<Cuenta>();
-		this.clientes = new ArrayList<Cliente>();
-		this.nombre   = nombre;
+		this.cuentas = new HashSet<ICuenta>();
+		this.clientes = new HashSet<ICliente>();
+		this.nombre = nombre;
 	}
-
-	public void altaCliente(String nombre) {
-		Cliente c = new Cliente(nombre);
-		Cuenta c1 = new Cuenta(cuentas.size(), nombre);
-		CuentaCorriente cc = new CuentaCorriente(cuentas.size(), (long) (Math.random() * 4000 + 1000), nombre);
-		CuentaCorriente cc2 = new CuentaCorriente(cuentas.size(), (long) (Math.random() * 4000 + 1000), nombre);
-
-		c.getCuentas().add(c1);
-//		c.getCc().add(cc);
-//		c.getCc().add(cc2);
-
-		this.altaCuenta(cc);
-		this.altaCuenta(cc2);
-		this.altaCuenta(c1);
-		this.clientes.add(c);
-	}
-
+	
 	public void altaCuenta(ICuenta c) {
-		if (c instanceof Cuenta)
-			this.cuentas.add((Cuenta) c);
-		else if (c instanceof CuentaCorriente)
-			this.cuentas.add((CuentaCorriente) c);
-	}
-
-//	public List<Cuenta> getCuentas() {
-//		return cuentas;
-//	}
-
-	public void setCuentas(List<Cuenta> cuentas) {
-		this.cuentas = cuentas;
-	}
-
-//	public List<Cliente> getClientes() {
-//		return clientes;
-//	}
-
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
+		this.cuentas.add(c);
 	}
 
 	public String getNombre() {
@@ -67,12 +31,27 @@ public class Banco implements IBanco{
 	}
 
 	public Set<ICuenta> getCuentas() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.cuentas;
 	}
 
 	public Set<ICliente> getClientes() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.clientes;
+	}
+
+	@Override
+	public void agregarCliente(ICliente cliente) {
+		Cuenta c1 = new Cuenta(cuentas.size(), cliente);
+		CuentaCorriente cc = new CuentaCorriente(cuentas.size(), (long) (Math.random() * 4000 + 1000), cliente);
+		CuentaCorriente cc2 = new CuentaCorriente(cuentas.size(), (long) (Math.random() * 4000 + 1000), cliente);
+
+		cliente.getCuentas().add(c1);
+		cliente.getCuentas().add(cc);
+		cliente.getCuentas().add(cc2);
+
+		this.altaCuenta(cc);
+		this.altaCuenta(cc2);
+		this.altaCuenta(c1);
+		
+		this.clientes.add(cliente);
 	}
 }
