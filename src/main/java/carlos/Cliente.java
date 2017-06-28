@@ -1,49 +1,50 @@
 package carlos;
 
-import java.util.Map;
+import java.io.InvalidClassException;
+import java.util.HashSet;
+import java.util.Set;
 
-import dipi.ICuenta;
 
-public class Cliente {
+
+public class Cliente implements ICliente{
 	
-	Map<Long,ICuenta> cuentas;
-	Banco banco = new Banco("Santander Rio");
+	Set<ICuenta> cuentas;
 	String nombre;
+	Banco banco;
 
 	public Cliente(String name, Banco banco){
 		this.banco=banco;
+		nombre = name;
+		cuentas = new HashSet<>();
 	}
-	public void crearCuentaCorriente(long id){
-		if(banco.existeCuenta(id)){
-			System.err.println("La cuenta ya existe");
+
+	public void agregarCuenta(ICuenta cuenta) throws InvalidClassException{
+		if(cuenta instanceof Cuenta || cuenta instanceof CuentaCorriente){
+			if (!cuentas.contains(cuenta)) {
+				System.out.println("Se agrego la cuenta al cliente " + nombre + " exitosamente");
+				if(!banco.getCuentas().contains(cuenta)){
+					banco.getCuentas().add(cuenta);
+				}
+			}else{
+				System.err.println("El usuario " + nombre + " ya tiene esa cuenta");
+			}
 		}else{
-			cuentas.put(id, new CuentaCorriente(id, nombre, 1500));
-			banco.crearCuentaCorrienteCliente(id,1500);
+			throw new InvalidClassException("El tipo de cuenta es invalido");
 		}
 	}
-	public void crearCuenta(long id){
-		if(banco.existeCuenta(id)){
-			System.err.println("La cuenta ya existe");
-		}else{
-			cuentas.put(id, new Cuenta(id, nombre));
-			banco.crearCuentaCliente(id);
-		}
-		
-	}
-	public String getName(){
-		return nombre;
-	}
-	public Map<Long, ICuenta> getCuentas(){
+
+	public Set<ICuenta> getCuentas(){
 		return cuentas;
 	}
-	public ICuenta getCuenta(long idCuenta){
-		return cuentas.get(idCuenta);
+
+	public String getNombre() {
+		return nombre;
 	}
-	public void elimininarCuenta(Cuenta cuenta){
-	}
-	public void elimininarCuenta(long idCuenta){
-		if(banco.existeCuenta(idCuenta)){
-			banco.eliminarCuentaCliente(name, idCuenta);
-		}
+	
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Cliente)) return false;
+		Cliente other = (Cliente) obj;
+		if(!other.nombre.equals(nombre)) return false;
+		return true;
 	}
 }

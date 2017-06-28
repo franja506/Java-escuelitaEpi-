@@ -1,16 +1,15 @@
 package carlos;
 
-import dipi.ICuentaCorriente;
+import dipi.MontoNegativoCuentaException;
 
-public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
+public class CuentaCorriente extends Cuenta implements ICuentaCorriente{
 
-	String cliente;
 	long montoGiroDescubierto;
 	long id;
 	long saldoMontoGiroDescubierto;
 
-	public CuentaCorriente(long id, String nombreCliente, long montoGiroDescubierto) {
-		super(id, nombreCliente);
+	public CuentaCorriente(long id, ICliente cliente, long montoGiroDescubierto) {
+		super(id, cliente);
 		this.montoGiroDescubierto = this.saldoMontoGiroDescubierto = montoGiroDescubierto;
 		this.saldoMontoGiroDescubierto = montoGiroDescubierto;
 	}
@@ -19,7 +18,7 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 		return montoGiroDescubierto;
 	}
 
-	public boolean depositar(long depositar) {
+	public boolean depositar(long depositar) throws MontoNegativoCuentaException {
 		if (super.getSaldo() >= 0) {
 			return super.depositar(depositar);
 		} else {
@@ -34,29 +33,39 @@ public class CuentaCorriente extends Cuenta implements ICuentaCorriente {
 
 	public long getSaldo() {
 		long saldo = super.getSaldo();
-		if (saldo >= 0) {
+		if (saldo > 0) {
 			return saldo;
-		} else {
+		} else{
 			return saldoMontoGiroDescubierto-montoGiroDescubierto;
 		}
 	}
 
-	public boolean extraer(long extraer) {
+	public boolean extraer(long extraer) throws MontoNegativoCuentaException {
 		long saldo = super.getSaldo();
 		if (saldo > extraer) {
 			return super.extraer(extraer);
 		} else{
 			if(saldo!=0){
 				extraer -= saldo;
-				super.extraer(saldo);
+				if(extraer<montoGiroDescubierto){
+					saldoMontoGiroDescubierto -= extraer;
+					extraerTodo();
+					System.out.println("Su nuevo saldo es: " + getSaldo());
+					return true;
+				}else{
+					System.err.println("[ERROR] No tenes saldo suficiente.");
+					return false;
+				}
 			}
 			
-			if(extraer>saldoMontoGiroDescubierto){
-				System.err.println("No tenes saldo suficiente.");
-				return false;
+			if(extraer<=saldoMontoGiroDescubierto){
+				saldoMontoGiroDescubierto -= extraer;
+				System.out.println("Su nuevo saldo es: " + getSaldo());
+				return true;
+			}else{
+				System.out.println("[ERROR] No tenes saldo suficiente.");
+				return true;
 			}
-			saldoMontoGiroDescubierto -= extraer;
-			return true;
 		}
 	}
 }

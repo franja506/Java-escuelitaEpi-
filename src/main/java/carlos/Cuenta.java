@@ -1,51 +1,17 @@
 package carlos;
 
-import dipi.ICuenta;
+import dipi.MontoNegativoCuentaException;
 
 public class Cuenta implements ICuenta{
 	private long saldo;
 	private long id;
-	private String nombreCliente;
+	private ICliente cliente;
 	
-	public Cuenta(long id, String nombre,long saldo){
+	public Cuenta(long id,ICliente cliente) {
 		this.id=id;
-		nombreCliente=nombre;
-		this.saldo=saldo;
-		
-	}
-	
-	public Cuenta(long id,String nombre) {
-		this.id=id;
-		nombreCliente=nombre;
+		this.cliente=cliente;
 		saldo=0;
 	}
-	
-	public boolean extraer(long extraer){
-		if(extraer<0){
-			System.err.println("Ingrese un valor correcto");
-			return false;
-		}else{
-			if(extraer>saldo){
-				System.err.println("No tiene suficientes fondos");
-				return false;
-			}
-			saldo = saldo-extraer;
-			System.out.println("Su nuevo saldo es: " + saldo);
-			return true;
-		}
-	}
-	
-	public boolean depositar(long depositar){
-		if(depositar<0){
-			System.err.println("Ingrese un valor correcto");
-			return false;
-		}else{
-			saldo = saldo+depositar;
-			System.out.println("Su nuevo saldo es: " + saldo);
-			return true;
-		}
-	}
-	
 	public long getSaldo(){
 		return saldo;
 	}
@@ -54,7 +20,50 @@ public class Cuenta implements ICuenta{
 		return id;
 	}
 
-	public String getNombreCliente() {
-		return nombreCliente;
+	@Override
+	public ICliente getCliente() {
+		return cliente;
+	}
+
+
+	public boolean extraer(long extraer)throws MontoNegativoCuentaException {
+		if(extraer<0){
+			throw new MontoNegativoCuentaException("Ingrese un valor correcto");
+		}else{
+			if(extraer>saldo){
+				System.err.println("No tiene saldo suficiente");
+				return false;
+			}
+			saldo = saldo-extraer;
+			System.out.println("Su nuevo saldo es: " + saldo);
+			return true;
+		}
+	}
+	
+	public void extraerTodo(){
+		saldo = 0;
+	}
+	public boolean depositar(long depositar)throws MontoNegativoCuentaException {
+		if(depositar<0){
+			throw new MontoNegativoCuentaException("Ingrese un valor correcto");
+		}else{
+			saldo = saldo+depositar;
+			System.out.println("Su nuevo saldo es: " + saldo);
+			return true;
+		}
+	}
+	
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Cuenta) || !(obj instanceof CuentaCorriente)){
+			return false;
+		}
+		Cuenta other = (Cuenta) obj;
+		if(!other.cliente.equals(cliente)){
+			return false;
+		}
+		if(other.id != id){
+			return false;
+		}
+		return true;
 	}
 }

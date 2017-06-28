@@ -1,59 +1,39 @@
 package carlos;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.InvalidClassException;
+import java.util.HashSet;
+import java.util.Set;
 
-import dipi.ICuenta;
-
-public class Banco {
+public class Banco implements IBanco {
 	
 	String nombre;
-	Map<String,Cliente> clientes;
-	Map<Integer,ICuenta> cuentas;
-	int count;
+	Set<ICliente> clientes;
+	Set<ICuenta> cuentas;
 	
-	public Banco(String name){
+	public Banco(String name) {
 		nombre = name;
-		clientes = new HashMap<>();
-		cuentas = new HashMap<>();
-		cuentasCorrientes = new HashMap<>();
+		clientes=new HashSet<>();
+		cuentas = new HashSet<>();
 	}
-	public boolean crearCliente(String name){
-		if(clientes.containsKey(name)){
-			System.err.println("El cliente " + name + " ya existe");
-			return false;
-		}
-		System.out.println("El cliente fue creado exitosamente!");
-		clientes.put(name, new Cliente(name, this));
-		return true;
+
+	public void agregarCliente(ICliente cliente) throws InvalidClassException{
+		if (cliente instanceof ICliente) {
+			if(!clientes.contains(clientes)){
+				clientes.add(cliente);
+				System.out.println("Se agrego correctamente el cliente " + cliente.getNombre());
+			}else System.err.println("Ya existe el cliente " + cliente.getNombre());
+		}else new InvalidClassException("Cliente no valido");
 	}
-	public boolean eliminarCliente(String name){
-		if(clientes.containsKey(name)){
-			clientes.remove(name);
-			return true;
-		}
-		System.err.println("El cliente " + name + " no existe");
-		return false;
+
+	public Set<ICuenta> getCuentas(){
+		return cuentas;
 	}
-	public boolean eliminarCuentaCliente(String name, long id){
-		if(clientes.containsKey(name)){
-			Cliente cliente = clientes.get(name);
-			if((cliente.getCuentas().containsKey(id)||cliente.getCuentasCorrientes().containsKey(id))&&(cuentas.containsKey(id)||cuentasCorrientes.containsKey(id))){
-				
-			}
-		}
+
+	public Set<ICliente> getClientes() {
+		return clientes;
 	}
-	public boolean eliminarCuentaCorrienteClienete() {
-	}
-	public boolean crearCuentaCliente(){
-	}
-	public boolean crearCuentaCorrienteCliente(){
-	}
-	public boolean depositarEnCliente(){
-	}
-	public boolean extraerDeCliente(){
-	}
-	public boolean existeCuenta(long id){
-		return cuentas.containsKey(id);
+
+	public String getNombre() {
+		return nombre;
 	}
 }
